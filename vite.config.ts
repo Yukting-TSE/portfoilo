@@ -2,9 +2,9 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 
-// GitHub Pages project site: /Portfoilo/
+// GitHub Pages project site: /portfoilo/
 const base =
-  process.env.GITHUB_PAGES === "true" ? "/Portfoilo/" : "/";
+  process.env.GITHUB_PAGES === "true" ? "/portfoilo/" : "/";
 
 export default defineConfig({
   base,
