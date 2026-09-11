@@ -574,10 +574,10 @@ export class HeroFieldEngine {
         this.sizeScale < 0.012 &&
         this.fieldOpacity < 0.012
       ) {
-        this.ctx.setTransform(1, 0, 0, 1, 0, 0);
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+        ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         const dpr = Math.min(1.5, window.devicePixelRatio || 1);
-        this.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
         this.animating = false;
         cancelAnimationFrame(this.raf);
       }
