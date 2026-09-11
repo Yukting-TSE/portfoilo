@@ -4,6 +4,7 @@ import { AboutIntro } from "../components/AboutIntro";
 import { ContactOverlay } from "../components/ContactOverlay";
 import { Footer } from "../components/Footer";
 import { Hero } from "../components/Hero";
+import { HeroField } from "../components/HeroField";
 import { MobileMenu } from "../components/MobileMenu";
 import { Navigation } from "../components/Navigation";
 import { SelectedWork } from "../components/SelectedWork";
@@ -65,6 +66,7 @@ export function HomePage() {
         onClose={() => setContactOpen(false)}
       />
       <main>
+        <HeroField />
         <Hero />
         <AboutIntro />
         <SelectedWork />

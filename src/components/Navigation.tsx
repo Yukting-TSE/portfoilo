@@ -47,6 +47,7 @@ export function Navigation({
         to="/"
         onClick={goHomeTop}
         className="relative z-[110] font-[family-name:var(--font-display)] text-[21px] tracking-tight transition-opacity duration-300 hover:opacity-45 sm:text-[26px]"
+        style={{ textShadow: "0 1px 3px rgba(0,0,0,0.75), 0 0 12px rgba(0,0,0,0.35)" }}
         tabIndex={faded ? -1 : undefined}
       >
         Yukting®{" "}
@@ -61,7 +62,7 @@ export function Navigation({
       >
         {links.map((l) => {
           const className =
-            "group relative text-[13px] tracking-[0.04em] transition-all duration-300 hover:-translate-y-0.5 lg:text-[14px]";
+            "group relative text-[13px] tracking-[0.04em] transition-all duration-300 hover:-translate-y-0.5 lg:text-[14px] [text-shadow:0_1px_3px_rgba(0,0,0,0.75),0_0_10px_rgba(0,0,0,0.35)]";
           const label = (
             <>
               <span className="transition-opacity duration-300 group-hover:opacity-45">

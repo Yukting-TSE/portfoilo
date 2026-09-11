@@ -4,6 +4,11 @@ import { BrowserRouter } from "react-router-dom";
 import App from "./App.tsx";
 import "./index.css";
 
+// Prevent browser from restoring prior scroll when entering case studies
+if ("scrollRestoration" in history) {
+  history.scrollRestoration = "manual";
+}
+
 const basename = import.meta.env.BASE_URL.replace(/\/$/, "") || undefined;
 
 createRoot(document.getElementById("root")!).render(

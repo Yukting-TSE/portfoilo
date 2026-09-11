@@ -10,10 +10,8 @@ export const profile = {
     "Creative Technologist",
   ],
   location: "Shanghai / Saint-Étienne",
-  heroBlurLine1: "Hey there, meet Yukting,",
-  heroBlurLine2: "interaction designer & media artist",
   typewriter:
-    "Glad you stopped in. I'm Yukting TSE — an interaction designer & media artist exploring HCI, narrative media, and embodied experience.",
+    "Hola! I'm Yukting TSE — an interaction designer & media artist exploring HCI, narrative media, and embodied experience.",
   heroVideo: publicUrl("videos/hero.mp4"),
   metadata: ["Interaction Design", "Research", "Creative Technology", "2026"],
   bio: "Hola! 我是谢玉婷，一名专注于人机交互与数字媒体的设计师。我喜欢旅游吃饭和发呆。即将毕业于同济大学机械方向交互设计专业，法国圣埃蒂安高等艺术与设计学院的媒体设计专业硕士双学位。我关注技术、叙事与情感体验的结合，热衷于通过交互设计、展览与实验性项目，把概念转化为可感知的体验，也持续探索 AI、编程与设计研究的更多可能性。期待有一天能和你合作！",

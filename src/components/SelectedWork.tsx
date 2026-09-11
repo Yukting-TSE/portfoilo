@@ -65,7 +65,7 @@ export function SelectedWork() {
   return (
     <section
       id="works"
-      className="relative z-[1] grid grid-cols-1 border-t border-[var(--line)] bg-[var(--bg)] lg:grid-cols-[12rem_minmax(0,1fr)]"
+      className="relative z-[3] grid grid-cols-1 border-t border-[var(--line)] bg-[var(--bg)] lg:grid-cols-[12rem_minmax(0,1fr)]"
     >
       <aside
         className="z-[5] border-b border-[var(--line)] bg-[var(--bg)] lg:min-h-full lg:self-stretch lg:border-b-0 lg:border-r lg:border-[var(--line)]"

@@ -1,5 +1,6 @@
 import {
   useEffect,
+  useLayoutEffect,
   useRef,
   useState,
   type CSSProperties,
@@ -30,8 +31,14 @@ export function ProjectPage() {
   const [contactOpen, setContactOpen] = useState(false);
   const [navOpacity, setNavOpacity] = useState(1);
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
+  // Lock to top before paint so opening a case never inherits prior scroll
+  useLayoutEffect(() => {
+    if ("scrollRestoration" in history) {
+      history.scrollRestoration = "manual";
+    }
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
   }, [id]);
 
   useEffect(() => {

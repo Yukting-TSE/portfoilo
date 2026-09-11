@@ -236,12 +236,12 @@ export function AboutIntro() {
     <div
       id="about"
       ref={trackRef}
-      className="relative z-[1] scroll-mt-16 bg-black [overflow-anchor:none] lg:scroll-mt-20"
+      className="relative z-[3] scroll-mt-16 bg-transparent [overflow-anchor:none] lg:scroll-mt-20"
       style={{ height: `${trackVh}vh` }}
     >
       <section
         ref={pinRef}
-        className="sticky top-0 isolate h-[100svh] overflow-hidden bg-black"
+        className="sticky top-0 isolate h-[100svh] overflow-hidden bg-transparent"
       >
         <div className="pointer-events-none absolute inset-0 z-0" aria-hidden>
           {aboutMotion.images.map((spec, i) => (
@@ -250,6 +250,7 @@ export function AboutIntro() {
               ref={(node) => {
                 imageRefs.current[i] = node;
               }}
+              data-about-image={i === 0 ? "first" : undefined}
               className="absolute left-0 top-0 overflow-hidden will-change-transform"
               style={{
                 background: spec.tone,

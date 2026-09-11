@@ -2,19 +2,41 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { profile } from "../data/profile";
 import { useTypewriter } from "../hooks/useTypewriter";
-import { useVideoScrub } from "../hooks/useVideoScrub";
+
+function clamp(n: number, min: number, max: number) {
+  return Math.min(max, Math.max(min, n));
+}
 
 export function Hero() {
-  const { videoRef, visible: videoVisible } = useVideoScrub(profile.heroVideo);
   const { displayed, done } = useTypewriter(profile.typewriter, {
     speed: 20,
     startDelay: 80,
   });
   const [ready, setReady] = useState(false);
+  const [washOpacity, setWashOpacity] = useState(1);
 
   useEffect(() => {
     const id = requestAnimationFrame(() => setReady(true));
     return () => cancelAnimationFrame(id);
+  }, []);
+
+  useEffect(() => {
+    const update = () => {
+      const hero = document.getElementById("top");
+      if (!hero) return;
+      const vh = window.innerHeight || 1;
+      const bottom = hero.getBoundingClientRect().bottom;
+      // Fade wash as soon as Hero starts leaving — no residual band at the seam
+      const leave = clamp((vh * 1.05 - bottom) / (vh * 0.75), 0, 1);
+      setWashOpacity(1 - leave);
+    };
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    return () => {
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+    };
   }, []);
 
   const copyEmail = async () => {
@@ -28,39 +50,31 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative flex min-h-[100svh] flex-col justify-end overflow-hidden bg-[#1a1a1a] px-5 pb-12 text-[var(--white)] sm:px-8 md:justify-center md:px-10 md:pb-0"
+      className="relative flex min-h-[100svh] flex-col justify-end overflow-hidden border-0 bg-transparent px-5 pb-12 outline-none text-[var(--white)] sm:px-8 md:justify-center md:px-10 md:pb-0"
     >
-      <video
-        ref={videoRef}
-        className={`pointer-events-none absolute inset-0 z-0 h-full w-full object-cover object-[70%_center] transition-opacity duration-500 ${
-          videoVisible ? "opacity-100" : "opacity-0"
-        }`}
-        muted
-        playsInline
-        preload="auto"
-        aria-hidden
-      />
-      {/* Lighter overlay so the 3D subject stays readable */}
+      {/* Desktop-only left veil — redundant on narrow screens */}
       <div
-        className="absolute inset-0 z-[1] bg-gradient-to-r from-black/45 via-black/20 to-transparent"
+        className="pointer-events-none absolute inset-0 z-[9] hidden md:block"
+        style={{
+          opacity: washOpacity,
+          background:
+            "linear-gradient(90deg, #050505 0%, rgba(5,5,5,0.78) 16%, rgba(5,5,5,0.4) 36%, rgba(5,5,5,0.1) 55%, transparent 72%)",
+          WebkitMaskImage:
+            "linear-gradient(180deg, #000 0%, #000 58%, rgba(0,0,0,0.45) 78%, transparent 100%)",
+          maskImage:
+            "linear-gradient(180deg, #000 0%, #000 58%, rgba(0,0,0,0.45) 78%, transparent 100%)",
+        }}
         aria-hidden
       />
 
       <div className="relative z-10 max-w-xl">
         <p
-          className={`pointer-events-none mb-5 select-none text-[clamp(18px,4vw,26px)] font-normal leading-[1.3] text-white/90 blur-[3px] transition-opacity duration-500 sm:mb-6 ${
+          className={`mb-5 min-h-[72px] text-[clamp(18px,4vw,26px)] font-normal leading-[1.35] text-white transition-opacity duration-500 sm:mb-6 ${
             ready ? "opacity-100" : "opacity-0"
           }`}
-        >
-          {profile.heroBlurLine1}
-          <br />
-          {profile.heroBlurLine2}
-        </p>
-
-        <p
-          className={`mb-5 min-h-[72px] text-[clamp(18px,4vw,26px)] font-normal leading-[1.35] transition-opacity duration-500 sm:mb-6 ${
-            ready ? "opacity-100" : "opacity-0"
-          }`}
+          style={{
+            textShadow: "0 1px 2px rgba(0,0,0,0.55), 0 2px 14px rgba(0,0,0,0.35)",
+          }}
           aria-live="polite"
         >
           {displayed}
@@ -134,9 +148,12 @@ export function Hero() {
         </div>
 
         <div
-          className={`flex flex-wrap gap-x-4 gap-y-1 text-[12px] tracking-[0.02em] text-white/55 transition-opacity duration-500 ${
+          className={`flex flex-wrap gap-x-4 gap-y-1 text-[12px] tracking-[0.02em] text-white/85 transition-opacity duration-500 ${
             ready ? "opacity-100" : "opacity-0"
           }`}
+          style={{
+            textShadow: "0 1px 3px rgba(0,0,0,0.5)",
+          }}
         >
           {profile.metadata.map((m) => (
             <span key={m}>{m}</span>

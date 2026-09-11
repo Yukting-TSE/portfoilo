@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import { ContactOverlay } from "../components/ContactOverlay";
 import { Footer } from "../components/Footer";
 import { MobileMenu } from "../components/MobileMenu";
@@ -11,8 +11,10 @@ export function AboutPage() {
   const [contactOpen, setContactOpen] = useState(false);
   const [navOpacity, setNavOpacity] = useState(1);
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
+  useLayoutEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
   }, []);
 
   useEffect(() => {

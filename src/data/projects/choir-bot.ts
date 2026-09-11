@@ -170,7 +170,8 @@ export const choirBotDetail: ProjectDetail = {
           figures: [
             {
               src: img("fig-05.png"),
-              caption: "TouchDesigner → MIDI → Ableton → laser",
+              caption:
+                "展出记录 · 米兰设计周 SaloneSatellite / 荷兰设计周 Fly Me to the Moon；收录于《100个D&I学生获奖作品》",
             },
           ],
         },
