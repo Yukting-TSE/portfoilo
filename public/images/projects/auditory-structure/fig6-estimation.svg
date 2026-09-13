@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="430.0pt" height="266.0pt" viewBox="0 0 430.0 266.0" role="img" aria-labelledby="t d">
+<title id="t">Every planned contrast as a mean difference with a 95% confidence interval</title>
+<desc id="d">Four panels stacked vertically, one per outcome, each showing three horizontal interval bars for the planned contrasts C3 minus C2, C3 minus C1 and C2 minus C1, with a dashed vertical line at zero and the numeric mean, interval bounds, t statistic, p value and Cohen's dz printed to the right of every bar. Panel A, navigation error rate: all three intervals fall below zero, with C3 minus C2 at minus .146, interval minus .201 to minus .092, dz minus 1.29. Panel B, conditional correction rate on the 16 participants defined in every condition: C3 minus C2 is plus .168, interval .080 to .257, dz 1.02; C3 minus C1 is plus .177 with an interval that only just excludes zero; C2 minus C1 is essentially nil. Panel C, completion time, and panel D, NASA-TLX: every interval crosses zero and is wide, so those markers are unfilled.</desc>
+<rect width="100%" height="100%" fill="#FFFFFF"/>
+<text x="0.00" y="8.00" font-family="Helvetica, Arial, sans-serif" font-size="8.0" font-weight="700" fill="#000000" text-anchor="start">Paired mean differences with 95% confidence intervals</text>
+<text x="0.00" y="17.00" font-family="Helvetica, Arial, sans-serif" font-size="5.8" font-weight="400" fill="#333333" text-anchor="start">Filled marker = interval excludes zero. Negative is fewer errors, faster, lower workload.</text>
+<text x="0.00" y="34.00" font-family="Helvetica, Arial, sans-serif" font-size="7.0" font-weight="700" fill="#000000" text-anchor="start">A  Navigation error rate</text>
+<line x1="162.18" y1="42.00" x2="162.18" y2="83.50" stroke="#9E9E9E" stroke-width="0.5" fill="none" stroke-dasharray="2 1.5"/>
+<line x1="62.00" y1="78.50" x2="176.00" y2="78.50" stroke="#9E9E9E" stroke-width="0.4" fill="none"/>
+<text x="62.00" y="81.00" font-family="Helvetica, Arial, sans-serif" font-size="5.8" font-weight="400" fill="#333333" text-anchor="start">-0.365</text>
+<text x="176.00" y="81.00" font-family="Helvetica, Arial, sans-serif" font-size="5.8" font-weight="400" fill="#333333" text-anchor="end">0.050</text>
+<text x="0.00" y="48.00" font-family="Helvetica, Arial, sans-serif" font-size="5.8" font-weight="700" fill="#000000" text-anchor="start">C3 − C2  primary</text>
+<line x1="107.04" y1="46.00" x2="137.07" y2="46.00" stroke="#000000" stroke-width="0.8" fill="none"/>
+<line x1="107.04" y1="43.60" x2="107.04" y2="48.40" stroke="#000000" stroke-width="0.8" fill="none"/>
+<line x1="137.07" y1="43.60" x2="137.07" y2="48.40" stroke="#000000" stroke-width="0.8" fill="none"/>
+<circle cx="122.06" cy="46.00" r="2.4" fill="#000000" stroke="#000000" stroke-width="0.9"/>
+<text x="186.00" y="48.00" font-family="Helvetica, Arial, sans-serif" font-size="5.8" font-weight="400" fill="#000000" text-anchor="start">−.146 [−.201, −.092]  t(18)=−5.61  p&lt;.001  dz=−1.29</text>
+<text x="0.00" y="60.50" font-family="Helvetica, Arial, sans-serif" font-size="5.8" font-weight="400" fill="#000000" text-anchor="start">C3 − C1</text>
+<line x1="75.82" y1="58.50" x2="122.97" y2="58.50" stroke="#000000" stroke-width="0.8" fill="none"/>
+<line x1="75.82" y1="56.10" x2="75.82" y2="60.90" stroke="#000000" stroke-width="0.8" fill="none"/>
+<line x1="122.97" y1="56.10" x2="122.97" y2="60.90" stroke="#000000" stroke-width="0.8" fill="none"/>
+<circle cx="99.39" cy="58.50" r="2.4" fill="#000000" stroke="#000000" stroke-width="0.9"/>
+<text x="186.00" y="60.50" font-family="Helvetica, Arial, sans-serif" font-size="5.8" font-weight="400" fill="#000000" text-anchor="start">−.229 [−.315, −.143]  t(18)=−5.60  p&lt;.001  dz=−1.28</text>
+<text x="0.00" y="73.00" font-family="Helvetica, Arial, sans-serif" font-size="5.8" font-weight="400" fill="#000000" text-anchor="start">C2 − C1</text>
+<line x1="117.31" y1="71.00" x2="161.72" y2="71.00" stroke="#000000" stroke-width="0.8" fill="none"/>
+<line x1="117.31" y1="68.60" x2="117.31" y2="73.40" stroke="#000000" stroke-width="0.8" fill="none"/>
+<line x1="161.72" y1="68.60" x2="161.72" y2="73.40" stroke="#000000" stroke-width="0.8" fill="none"/>
+<circle cx="139.52" cy="71.00" r="2.4" fill="#000000" stroke="#000000" stroke-width="0.9"/>
+<text x="186.00" y="73.00" font-family="Helvetica, Arial, sans-serif" font-size="5.8" font-weight="400" fill="#000000" text-anchor="start">−.083 [−.164, −.002]  t(18)=−2.14  p=.046  dz=−.49</text>
+<text x="0.00" y="94.00" font-family="Helvetica, Arial, sans-serif" font-size="7.0" font-weight="700" fill="#000000" text-anchor="start">B  Conditional correction rate</text>
+<text x="119.30" y="94.00" font-family="Helvetica, Arial, sans-serif" font-size="5.8" font-weight="400" fill="#333333" text-anchor="start">complete subset, n = 16</text>
+<line x1="96.45" y1="102.00" x2="96.45" y2="143.50" stroke="#9E9E9E" stroke-width="0.5" fill="none" stroke-dasharray="2 1.5"/>
+<line x1="62.00" y1="138.50" x2="176.00" y2="138.50" stroke="#9E9E9E" stroke-width="0.4" fill="none"/>
+<text x="62.00" y="141.00" font-family="Helvetica, Arial, sans-serif" font-size="5.8" font-weight="400" fill="#333333" text-anchor="start">-0.180</text>
+<text x="176.00" y="141.00" font-family="Helvetica, Arial, sans-serif" font-size="5.8" font-weight="400" fill="#333333" text-anchor="end">0.416</text>
+<text x="96.45" y="141.00" font-family="Helvetica, Arial, sans-serif" font-size="5.8" font-weight="400" fill="#333333" text-anchor="middle">0</text>
+<text x="0.00" y="108.00" font-family="Helvetica, Arial, sans-serif" font-size="5.8" font-weight="700" fill="#000000" text-anchor="start">C3 − C2  primary</text>
+<line x1="111.78" y1="106.00" x2="145.53" y2="106.00" stroke="#000000" stroke-width="0.8" fill="none"/>
+<line x1="111.78" y1="103.60" x2="111.78" y2="108.40" stroke="#000000" stroke-width="0.8" fill="none"/>
+<line x1="145.53" y1="103.60" x2="145.53" y2="108.40" stroke="#000000" stroke-width="0.8" fill="none"/>
+<circle cx="128.66" cy="106.00" r="2.4" fill="#000000" stroke="#000000" stroke-width="0.9"/>
+<text x="186.00" y="108.00" font-family="Helvetica, Arial, sans-serif" font-size="5.8" font-weight="400" fill="#000000" text-anchor="start">+.168 [+.080, +.257]  t(15)=+4.07  p=.001  dz=+1.02</text>
+<text x="0.00" y="120.50" font-family="Helvetica, Arial, sans-serif" font-size="5.8" font-weight="400" fill="#000000" text-anchor="start">C3 − C1</text>
+<line x1="98.28" y1="118.50" x2="162.18" y2="118.50" stroke="#000000" stroke-width="0.8" fill="none"/>
+<line x1="98.28" y1="116.10" x2="98.28" y2="120.90" stroke="#000000" stroke-width="0.8" fill="none"/>
+<line x1="162.18" y1="116.10" x2="162.18" y2="120.90" stroke="#000000" stroke-width="0.8" fill="none"/>
+<circle cx="130.23" cy="118.50" r="2.4" fill="#000000" stroke="#000000" stroke-width="0.9"/>
+<text x="186.00" y="120.50" font-family="Helvetica, Arial, sans-serif" font-size="5.8" font-weight="400" fill="#000000" text-anchor="start">+.177 [+.010, +.344]  t(15)=+2.25  p=.040  dz=+.56</text>
+<text x="0.00" y="133.00" font-family="Helvetica, Arial, sans-serif" font-size="5.8" font-weight="400" fill="#000000" text-anchor="start">C2 − C1</text>
+<line x1="75.82" y1="131.00" x2="120.23" y2="131.00" stroke="#000000" stroke-width="0.8" fill="none"/>
+<line x1="75.82" y1="128.60" x2="75.82" y2="133.40" stroke="#000000" stroke-width="0.8" fill="none"/>
+<line x1="120.23" y1="128.60" x2="120.23" y2="133.40" stroke="#000000" stroke-width="0.8" fill="none"/>
+<circle cx="98.02" cy="131.00" r="2.4" fill="#FFFFFF" stroke="#000000" stroke-width="0.9"/>
+<text x="186.00" y="133.00" font-family="Helvetica, Arial, sans-serif" font-size="5.8" font-weight="400" fill="#000000" text-anchor="start">+.008 [−.108, +.124]  t(15)=+.15  p=.882  dz=+.04</text>
+<text x="0.00" y="154.00" font-family="Helvetica, Arial, sans-serif" font-size="7.0" font-weight="700" fill="#000000" text-anchor="start">C  Completion time (s)</text>
+<line x1="108.17" y1="162.00" x2="108.17" y2="203.50" stroke="#9E9E9E" stroke-width="0.5" fill="none" stroke-dasharray="2 1.5"/>
+<line x1="62.00" y1="198.50" x2="176.00" y2="198.50" stroke="#9E9E9E" stroke-width="0.4" fill="none"/>
+<text x="62.00" y="201.00" font-family="Helvetica, Arial, sans-serif" font-size="5.8" font-weight="400" fill="#333333" text-anchor="start">-42.8</text>
+<text x="176.00" y="201.00" font-family="Helvetica, Arial, sans-serif" font-size="5.8" font-weight="400" fill="#333333" text-anchor="end">62.9</text>
+<text x="108.17" y="201.00" font-family="Helvetica, Arial, sans-serif" font-size="5.8" font-weight="400" fill="#333333" text-anchor="middle">0</text>
+<text x="0.00" y="168.00" font-family="Helvetica, Arial, sans-serif" font-size="5.8" font-weight="700" fill="#000000" text-anchor="start">C3 − C2  primary</text>
+<line x1="96.34" y1="166.00" x2="162.18" y2="166.00" stroke="#000000" stroke-width="0.8" fill="none"/>
+<line x1="96.34" y1="163.60" x2="96.34" y2="168.40" stroke="#000000" stroke-width="0.8" fill="none"/>
+<line x1="162.18" y1="163.60" x2="162.18" y2="168.40" stroke="#000000" stroke-width="0.8" fill="none"/>
+<circle cx="129.26" cy="166.00" r="2.4" fill="#FFFFFF" stroke="#000000" stroke-width="0.9"/>
+<text x="186.00" y="168.00" font-family="Helvetica, Arial, sans-serif" font-size="5.8" font-weight="400" fill="#000000" text-anchor="start">+19.5 [−11.0, +50.1]  t(18)=+1.35  p=.195  dz=+.31</text>
+<text x="0.00" y="180.50" font-family="Helvetica, Arial, sans-serif" font-size="5.8" font-weight="400" fill="#000000" text-anchor="start">C3 − C1</text>
+<line x1="80.80" y1="178.50" x2="155.52" y2="178.50" stroke="#000000" stroke-width="0.8" fill="none"/>
+<line x1="80.80" y1="176.10" x2="80.80" y2="180.90" stroke="#000000" stroke-width="0.8" fill="none"/>
+<line x1="155.52" y1="176.10" x2="155.52" y2="180.90" stroke="#000000" stroke-width="0.8" fill="none"/>
+<circle cx="118.16" cy="178.50" r="2.4" fill="#FFFFFF" stroke="#000000" stroke-width="0.9"/>
+<text x="186.00" y="180.50" font-family="Helvetica, Arial, sans-serif" font-size="5.8" font-weight="400" fill="#000000" text-anchor="start">+9.3 [−25.4, +43.9]  t(18)=+.56  p=.581  dz=+.13</text>
+<text x="0.00" y="193.00" font-family="Helvetica, Arial, sans-serif" font-size="5.8" font-weight="400" fill="#000000" text-anchor="start">C2 − C1</text>
+<line x1="75.82" y1="191.00" x2="118.32" y2="191.00" stroke="#000000" stroke-width="0.8" fill="none"/>
+<line x1="75.82" y1="188.60" x2="75.82" y2="193.40" stroke="#000000" stroke-width="0.8" fill="none"/>
+<line x1="118.32" y1="188.60" x2="118.32" y2="193.40" stroke="#000000" stroke-width="0.8" fill="none"/>
+<circle cx="97.07" cy="191.00" r="2.4" fill="#FFFFFF" stroke="#000000" stroke-width="0.9"/>
+<text x="186.00" y="193.00" font-family="Helvetica, Arial, sans-serif" font-size="5.8" font-weight="400" fill="#000000" text-anchor="start">−10.3 [−30.0, +9.4]  t(18)=−1.10  p=.287  dz=−.25</text>
+<text x="0.00" y="214.00" font-family="Helvetica, Arial, sans-serif" font-size="7.0" font-weight="700" fill="#000000" text-anchor="start">D  NASA-TLX (0–100)</text>
+<line x1="128.65" y1="222.00" x2="128.65" y2="263.50" stroke="#9E9E9E" stroke-width="0.5" fill="none" stroke-dasharray="2 1.5"/>
+<line x1="62.00" y1="258.50" x2="176.00" y2="258.50" stroke="#9E9E9E" stroke-width="0.4" fill="none"/>
+<text x="62.00" y="261.00" font-family="Helvetica, Arial, sans-serif" font-size="5.8" font-weight="400" fill="#333333" text-anchor="start">-7.71</text>
+<text x="176.00" y="261.00" font-family="Helvetica, Arial, sans-serif" font-size="5.8" font-weight="400" fill="#333333" text-anchor="end">5.48</text>
+<text x="128.65" y="261.00" font-family="Helvetica, Arial, sans-serif" font-size="5.8" font-weight="400" fill="#333333" text-anchor="middle">0</text>
+<text x="0.00" y="228.00" font-family="Helvetica, Arial, sans-serif" font-size="5.8" font-weight="700" fill="#000000" text-anchor="start">C3 − C2  primary</text>
+<line x1="88.74" y1="226.00" x2="162.18" y2="226.00" stroke="#000000" stroke-width="0.8" fill="none"/>
+<line x1="88.74" y1="223.60" x2="88.74" y2="228.40" stroke="#000000" stroke-width="0.8" fill="none"/>
+<line x1="162.18" y1="223.60" x2="162.18" y2="228.40" stroke="#000000" stroke-width="0.8" fill="none"/>
+<circle cx="125.46" cy="226.00" r="2.4" fill="#FFFFFF" stroke="#000000" stroke-width="0.9"/>
+<text x="186.00" y="228.00" font-family="Helvetica, Arial, sans-serif" font-size="5.8" font-weight="400" fill="#000000" text-anchor="start">−.37 [−4.62, +3.88]  t(18)=−.18  p=.857  dz=−.04</text>
+<text x="0.00" y="240.50" font-family="Helvetica, Arial, sans-serif" font-size="5.8" font-weight="400" fill="#000000" text-anchor="start">C3 − C1</text>
+<line x1="75.82" y1="238.50" x2="157.05" y2="238.50" stroke="#000000" stroke-width="0.8" fill="none"/>
+<line x1="75.82" y1="236.10" x2="75.82" y2="240.90" stroke="#000000" stroke-width="0.8" fill="none"/>
+<line x1="157.05" y1="236.10" x2="157.05" y2="240.90" stroke="#000000" stroke-width="0.8" fill="none"/>
+<circle cx="116.43" cy="238.50" r="2.4" fill="#FFFFFF" stroke="#000000" stroke-width="0.9"/>
+<text x="186.00" y="240.50" font-family="Helvetica, Arial, sans-serif" font-size="5.8" font-weight="400" fill="#000000" text-anchor="start">−1.41 [−6.11, +3.28]  t(18)=−.63  p=.535  dz=−.14</text>
+<text x="0.00" y="253.00" font-family="Helvetica, Arial, sans-serif" font-size="5.8" font-weight="400" fill="#000000" text-anchor="start">C2 − C1</text>
+<line x1="96.16" y1="251.00" x2="143.09" y2="251.00" stroke="#000000" stroke-width="0.8" fill="none"/>
+<line x1="96.16" y1="248.60" x2="96.16" y2="253.40" stroke="#000000" stroke-width="0.8" fill="none"/>
+<line x1="143.09" y1="248.60" x2="143.09" y2="253.40" stroke="#000000" stroke-width="0.8" fill="none"/>
+<circle cx="119.62" cy="251.00" r="2.4" fill="#FFFFFF" stroke="#000000" stroke-width="0.9"/>
+<text x="186.00" y="253.00" font-family="Helvetica, Arial, sans-serif" font-size="5.8" font-weight="400" fill="#000000" text-anchor="start">−1.04 [−3.76, +1.67]  t(18)=−.81  p=.430  dz=−.19</text>
+</svg>

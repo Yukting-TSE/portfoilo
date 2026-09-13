@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Study 1 participant trajectories</title>
+<style>
+  :root{
+    --ink:#f5f5f2;
+    --sans:"HelveticaNowDisplay-Medium","Helvetica Neue",Helvetica,Arial,"PingFang SC","Microsoft YaHei",sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%;overflow:hidden;background:transparent;color:var(--ink)}
+  body{font-family:var(--sans);-webkit-font-smoothing:antialiased;display:flex;flex-direction:column}
+  .card{flex:1;min-height:0;display:flex;flex-direction:column}
+  .tabs{display:flex;flex-wrap:wrap;gap:10px;height:44px;align-items:center;flex-shrink:0}
+  .tabs button{appearance:none;border:0;background:rgba(245,245,242,.16);color:rgba(245,245,242,.88);
+    font:700 16px/1 var(--sans);letter-spacing:.02em;
+    padding:8px 14px;cursor:pointer;border-radius:999px}
+  .tabs button[aria-selected="true"]{background:rgba(245,245,242,.34);color:#f5f5f2}
+  .axlabs{position:relative;height:32px;flex-shrink:0}
+  .axlabs span{position:absolute;bottom:4px;font:700 16px/1 var(--sans);color:rgba(245,245,242,.9)}
+  .axlabs .a1{left:0}
+  .axlabs .a2{left:50%}
+  .axlabs .a3{right:0}
+  .plot{flex:1;min-height:0;width:100%}
+  .plot svg{width:100%;height:100%;display:block}
+  svg text{font-family:var(--sans);user-select:none}
+  .thread{transition:opacity .18s ease}
+  .thread.hot{opacity:.95 !important}
+  svg.focused .thread:not(.hot){opacity:.07 !important}
+  svg.focused .bead:not(.hot){opacity:.08 !important}
+  .vlab{opacity:0;pointer-events:none}
+  .vlab.hot{opacity:1}
+  .hit{cursor:pointer}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="tabs" role="tablist">
+    <button type="button" role="tab" aria-selected="true" data-key="er">错误率</button>
+    <button type="button" role="tab" aria-selected="false" data-key="cr">纠正率</button>
+    <button type="button" role="tab" aria-selected="false" data-key="tm">完成时间</button>
+    <button type="button" role="tab" aria-selected="false" data-key="tlx">NASA-TLX</button>
+  </div>
+  <div class="axlabs" aria-hidden="true">
+    <span class="a1">C1</span><span class="a2">C2</span><span class="a3">C3</span>
+  </div>
+  <div class="plot">
+    <svg id="ch" viewBox="0 0 800 400" preserveAspectRatio="none"></svg>
+  </div>
+</div>
+<script>
+(function () {
+  'use strict';
+  const NS = 'http://www.w3.org/2000/svg';
+  const P = {
+    TXT: '#f5f5f2', MUT: 'rgba(245,245,242,.78)', LAB: 'rgba(245,245,242,.9)',
+    FAINT: 'rgba(245,245,242,.45)', DATA: 'rgba(245,245,242,.55)', HERO: '#f5f5f2',
+    HALO: '#000'
+  };
+  const el = (p, t, a) => { const n = document.createElementNS(NS, t);
+    for (const k in a) n.setAttribute(k, a[k]); p.appendChild(n); return n; };
+  const txt = (p, a, s) => { const n = el(p, 'text', a); n.textContent = s; return n; };
+  const rnd = (i, k) => Math.abs(((i * 73856093) ^ (k * 19349663)) % 1000) / 1000;
+
+  const PEOPLE = [
+    ['P01', [.763, .566, .388], [.073, .324, .633], [110.0, 30.2, 16.2], [48.16, 41.66, 17.00]],
+    ['P02', [.554, .768, .663], [.412, .178, .190], [173.0, 56.8, 59.3], [46.59, 40.67, 51.25]],
+    ['P03', [.811, .816, .464], [.127, .113, .361], [27.1, 104.3, 35.9], [4.33, 11.75, 2.00]],
+    ['P04', [.669, .741, .629], [.174, .233, .186], [47.1, 16.6, 77.3], [30.67, 20.67, 29.75]],
+    ['P05', [.850, .593, .509], [.134, .298, .516], [28.9, 16.7, 62.6], [31.25, 30.41, 41.67]],
+    ['P06', [.442, .000, .000], [.433, null, null], [17.1, 7.5, 7.5], [13.75, 9.17, 12.91]],
+    ['P07', [.733, .408, .367], [.133, .065, .458], [40.7, 13.0, 9.3], [15.00, 12.50, 11.67]],
+    ['P08', [.724, .683, .482], [.140, .327, .476], [51.1, 7.1, 64.6], [6.83, 4.50, 11.50]],
+    ['P09', [.773, .800, .720], [.124, .177, .300], [36.2, 16.2, 22.4], [34.33, 29.75, 29.16]],
+    ['P10', [.781, .699, .467], [.129, .137, .417], [51.7, 40.7, 21.2], [30.00, 20.41, 14.59]],
+    ['P11', [.479, .239, .000], [.350, .273, null], [13.6, 17.6, 18.0], [7.50, 2.50, 1.33]],
+    ['P12', [.838, .544, .545], [.074, .333, .312], [19.9, 37.9, 46.2], [12.50, 14.17, 7.75]],
+    ['P13', [.108, .062, .000], [1.000, 1.000, null], [12.3, 5.9, 5.2], [0.00, 0.41, 0.41]],
+    ['P14', [.525, .478, .184], [.312, .341, .800], [44.6, 71.0, 30.8], [10.92, 22.91, 13.16]],
+    ['P15', [.642, .665, .333], [.244, .258, .625], [14.6, 15.9, 10.4], [6.17, 9.58, 5.83]],
+    ['P16', [.802, .808, .710], [.148, .113, .142], [9.2, 36.4, 46.2], [0.00, 2.08, 5.00]],
+    ['P17', [.045, .150, .182], [1.000, .333, .250], [8.1, 7.9, 10.4], [0.00, 0.00, 0.00]],
+    ['P18', [.658, .704, .532], [.174, .224, .346], [12.9, 17.5, 248.7], [25.00, 30.00, 40.83]],
+    ['P19', [.830, .731, .506], [.117, .192, .329], [39.9, 43.2, 141.6], [5.00, 5.00, 5.33]]
+  ];
+  const MEAN = {
+    er: [.633, .550, .404],
+    cr: [.279, .273, .396],
+    tm: [39.9, 29.6, 49.1],
+    tlx: [17.26, 16.22, 15.85]
+  };
+  const META = {
+    er: { unit: 'rate', lo: 0, hi: 1 },
+    cr: { unit: 'rate', lo: 0, hi: 1 },
+    tm: { unit: 'sec', lo: 0, hi: 260 },
+    tlx: { unit: 'tlx', lo: 0, hi: 55 }
+  };
+  const DIMS = ['C1', 'C2', 'C3'];
+
+  const fmt = (v, unit) => {
+    if (v == null) return '—';
+    if (unit === 'rate') return v.toFixed(3).replace(/^0\./, '.');
+    if (unit === 'sec') return v.toFixed(1) + 's';
+    return v.toFixed(2);
+  };
+
+  let key = 'er';
+  let pinned = null;
+
+  const valsOf = (row, k) => row[k === 'er' ? 1 : k === 'cr' ? 2 : k === 'tm' ? 3 : 4];
+
+  const cubic = (AX, ys) => {
+    let d = `M${AX[0]} ${ys[0].toFixed(1)}`;
+    for (let k = 0; k < AX.length - 1; k++) {
+      if (ys[k] == null || ys[k + 1] == null) continue;
+      if (k > 0 && ys[k - 1] == null) d += ` M${AX[k]} ${ys[k].toFixed(1)}`;
+      const mx = (AX[k] + AX[k + 1]) / 2;
+      d += ` C${mx} ${ys[k].toFixed(1)} ${mx} ${ys[k + 1].toFixed(1)} ${AX[k + 1]} ${ys[k + 1].toFixed(1)}`;
+    }
+    return d;
+  };
+
+  const draw = (s, W, H) => {
+    s.innerHTML = '';
+    s.classList.remove('focused');
+    pinned = null;
+
+    const meta = META[key];
+    const AX = [1, W / 2, W - 1], TOP = 16, BOT = H - 16;
+    const mapY = (v) => BOT - (v - meta.lo) / (meta.hi - meta.lo) * (BOT - TOP);
+
+    DIMS.forEach((name, di) => {
+      el(s, 'line', { x1: AX[di], y1: TOP, x2: AX[di], y2: BOT, stroke: P.FAINT, 'stroke-width': 2.6 });
+      el(s, 'line', { x1: AX[di] - 6, y1: TOP, x2: AX[di] + 6, y2: TOP, stroke: P.FAINT, 'stroke-width': 2.6 });
+      el(s, 'line', { x1: AX[di] - 6, y1: BOT, x2: AX[di] + 6, y2: BOT, stroke: P.FAINT, 'stroke-width': 2.6 });
+      const side = di === 2 ? 'end' : 'start';
+      const tx = di === 2 ? AX[di] - 8 : AX[di] + 8;
+      txt(s, { x: tx, y: TOP + 16, 'font-size': 13, 'font-weight': 600, fill: P.FAINT,
+        'text-anchor': side }, meta.unit === 'rate' ? '1.0' : String(meta.hi));
+      txt(s, { x: tx, y: BOT - 6, 'font-size': 13, 'font-weight': 600, fill: P.FAINT,
+        'text-anchor': side }, meta.unit === 'rate' ? '.0' : '0');
+    });
+
+    const setHot = (id, on) => {
+      [...s.querySelectorAll(`[data-id="${id}"]`)].forEach((n) => n.classList.toggle('hot', on));
+    };
+    const focus = (id) => {
+      if (!id) { s.classList.remove('focused'); return; }
+      s.classList.add('focused');
+      [...s.querySelectorAll('.hot')].forEach((n) => n.classList.remove('hot'));
+      setHot(id, true);
+    };
+
+    PEOPLE.forEach((row, i) => {
+      const vals = valsOf(row, key);
+      const ys = vals.map((v) => v == null ? null : mapY(v));
+      const d = cubic(AX, ys);
+      el(s, 'path', { d, fill: 'none', stroke: P.DATA, 'stroke-width': 2.6,
+        opacity: .55 + rnd(i + 1, 5) * .35, class: 'thread', 'data-id': row[0] });
+      const hit = el(s, 'path', { d, fill: 'none', stroke: 'transparent', 'stroke-width': 14,
+        class: 'hit', 'data-id': row[0] });
+      ys.forEach((y, di) => {
+        if (y == null) return;
+        el(s, 'circle', { cx: AX[di], cy: y, r: 3.2, fill: P.DATA, opacity: .85,
+          class: 'bead', 'data-id': row[0] });
+      });
+
+      const labg = el(s, 'g', { class: 'vlab', 'data-id': row[0] });
+      ys.forEach((y, di) => {
+        if (y == null) return;
+        const above = y > TOP + 22;
+        txt(labg, {
+          x: AX[di] + (di === 2 ? -8 : 8), y: above ? y - 10 : y + 14,
+          'font-size': 14, 'font-weight': 700, fill: P.HERO,
+          'text-anchor': di === 2 ? 'end' : 'start',
+          style: `paint-order:stroke;stroke:${P.HALO};stroke-width:3.5px`
+        }, `${DIMS[di]} ${fmt(vals[di], meta.unit)}`);
+      });
+      const last = [...ys].reverse().findIndex((y) => y != null);
+      const lastDi = last === -1 ? 2 : 2 - last;
+      const ly = ys[lastDi];
+      if (ly != null) {
+        txt(labg, {
+          x: AX[lastDi] + (lastDi === 2 ? -8 : 10), y: ly + 4,
+          'font-size': 15, 'font-weight': 700, fill: P.HERO,
+          'text-anchor': lastDi === 2 ? 'end' : 'start',
+          style: `paint-order:stroke;stroke:${P.HALO};stroke-width:3.5px`
+        }, row[0]);
+      }
+
+      const enter = () => { if (!pinned) focus(row[0]); };
+      const leave = () => { if (!pinned) focus(null); };
+      hit.addEventListener('mouseenter', enter);
+      hit.addEventListener('mouseleave', leave);
+      hit.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (pinned === row[0]) { pinned = null; focus(null); return; }
+        pinned = row[0];
+        focus(row[0]);
+      });
+    });
+
+    const m = MEAN[key];
+    const mys = m.map(mapY);
+    const md = cubic(AX, mys);
+    el(s, 'path', { d: md, fill: 'none', stroke: P.HERO, 'stroke-width': 4.4, opacity: 1,
+      class: 'thread', 'data-id': 'MEAN' });
+    mys.forEach((y, di) => el(s, 'circle', { cx: AX[di], cy: y, r: 5.2, fill: P.HERO,
+      class: 'bead', 'data-id': 'MEAN' }));
+    txt(s, { x: AX[2] - 10, y: mys[2] + 5, 'font-size': 15, 'font-weight': 700, fill: P.HERO,
+      'text-anchor': 'end', style: `paint-order:stroke;stroke:${P.HALO};stroke-width:3px` }, '均值');
+  };
+
+  const host = document.getElementById('ch');
+  const size = () => {
+    const w = Math.max(host.clientWidth, 2);
+    const h = Math.max(host.clientHeight, 2);
+    host.setAttribute('viewBox', `0 0 ${w} ${h}`);
+    draw(host, w, h);
+  };
+
+  document.querySelectorAll('.tabs button').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      key = btn.getAttribute('data-key');
+      document.querySelectorAll('.tabs button').forEach((b) => b.setAttribute('aria-selected', String(b === btn)));
+      size();
+    });
+  });
+
+  new ResizeObserver(size).observe(host);
+  size();
+})();
+</script>
+</body>
+</html>

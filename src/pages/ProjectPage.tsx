@@ -11,6 +11,7 @@ import {
 import { Link, useParams } from "react-router-dom";
 import { ContactOverlay } from "../components/ContactOverlay";
 import { Footer } from "../components/Footer";
+import { LightboxProvider, LightboxTrigger } from "../components/ImageLightbox";
 import { LoadingMark, SmartImage, useMediaDimensions, useVideoDimensions } from "../components/MediaLoad";
 import { MobileMenu } from "../components/MobileMenu";
 import { Navigation } from "../components/Navigation";
@@ -81,7 +82,7 @@ export function ProjectPage() {
   const { project } = found;
 
   return (
-    <>
+    <LightboxProvider>
       <Navigation
         menuOpen={menuOpen}
         onToggleMenu={() => setMenuOpen((v) => !v)}
@@ -98,7 +99,7 @@ export function ProjectPage() {
       </main>
 
       <Footer onOpenContact={() => setContactOpen(true)} />
-    </>
+    </LightboxProvider>
   );
 }
 
@@ -233,17 +234,19 @@ function CoverMedia({ cover }: { cover: DetailFigure }) {
   }
 
   return (
-    <div className="overflow-hidden rounded-2xl">
-      <img
-        src={cover.src}
-        alt={cover.alt ?? ""}
-        className={
-          cover.fit === "natural"
-            ? "h-auto w-full"
-            : "aspect-video h-auto w-full object-cover"
-        }
-      />
-    </div>
+    <LightboxTrigger src={cover.src} alt={cover.alt ?? ""}>
+      <div className="overflow-hidden rounded-2xl">
+        <img
+          src={cover.src}
+          alt={cover.alt ?? ""}
+          className={
+            cover.fit === "natural"
+              ? "h-auto w-full"
+              : "aspect-video h-auto w-full object-cover"
+          }
+        />
+      </div>
+    </LightboxTrigger>
   );
 }
 
@@ -523,16 +526,27 @@ function BodySection({ section }: { section: DetailSection }) {
     const isEnd = section.align === "end";
     const isBetween = section.align === "between";
     const pairCount = Math.max(section.left.length, section.right.length);
+    const leftFirst = section.left[0];
+    const rightFirst = section.right[0];
+    const leftHasTitle =
+      (leftFirst?.type === "prose" && Boolean(leftFirst.title)) ||
+      (leftFirst?.type === "goals" && Boolean(leftFirst.heading));
+    const rightIsMedia =
+      rightFirst?.type === "figure" || rightFirst?.type === "table";
+    const offsetTitle =
+      section.offsetTitle === false
+        ? false
+        : Boolean(section.offsetTitle) || (leftHasTitle && rightIsMedia);
     const useSubgrid =
       !isEnd &&
       !isBetween &&
       !section.heading &&
-      !section.offsetTitle &&
+      !offsetTitle &&
       section.left.length === section.right.length &&
       pairCount > 1;
-    const titleOffset = section.offsetTitle ? (
+    const titleOffset = offsetTitle ? (
       <div
-        className="mb-4 font-[family-name:var(--font-display)] text-[clamp(0.95rem,1.5vw,1.15rem)] font-bold tracking-[-0.02em] text-transparent select-none"
+        className="mb-4 hidden font-[family-name:var(--font-display)] text-[clamp(0.95rem,1.5vw,1.15rem)] font-bold tracking-[-0.02em] text-transparent select-none lg:block"
         aria-hidden
       >
         &nbsp;
@@ -569,11 +583,13 @@ function BodySection({ section }: { section: DetailSection }) {
 
     return (
       <div
+        data-case-columns=""
         className={`grid gap-x-12 gap-y-10 lg:grid-cols-2 xl:gap-x-20 ${
           isEnd || isBetween ? "lg:items-stretch" : "lg:items-start"
         }`}
       >
         <div
+          data-case-left=""
           className={
             isEnd
               ? "flex w-full max-w-xl flex-col gap-10"
@@ -668,6 +684,10 @@ function BodySection({ section }: { section: DetailSection }) {
 
   if (section.type === "part") {
     return <PartHeader section={section} />;
+  }
+
+  if (section.type === "table" && section.table.wide) {
+    return <TableBlock table={section.table} />;
   }
 
   if (section.type === "goals" && section.highlight) {
@@ -875,21 +895,23 @@ function FigureRow({ figures }: { figures: DetailFigure[] }) {
     <div className="relative w-full overflow-visible">
       <div className="relative w-full">
         <div className="mb-3 w-fit lg:absolute lg:top-0 lg:right-full lg:mb-0 lg:mr-3 xl:mr-4">
-          <SmartImage
-            imgRef={thumbRef}
-            src={thumb.src}
-            alt={thumb.alt ?? thumb.caption ?? ""}
-            wrapClassName="overflow-hidden rounded-2xl"
-            objectFit="contain"
-            className="block h-40 w-auto max-w-none object-contain object-top lg:h-[var(--pair-h,auto)]"
-            style={{
-              ...figureImageStyle(thumb),
-              ...(pairHeight
-                ? ({ "--pair-h": `${pairHeight}px` } as CSSProperties)
-                : null),
-            }}
-            loading="lazy"
-          />
+          <LightboxTrigger src={thumb.src} alt={thumb.alt ?? thumb.caption ?? ""}>
+            <SmartImage
+              imgRef={thumbRef}
+              src={thumb.src}
+              alt={thumb.alt ?? thumb.caption ?? ""}
+              wrapClassName="overflow-hidden rounded-2xl"
+              objectFit="contain"
+              className="block h-40 w-auto max-w-none object-contain object-top lg:h-[var(--pair-h,auto)]"
+              style={{
+                ...figureImageStyle(thumb),
+                ...(pairHeight
+                  ? ({ "--pair-h": `${pairHeight}px` } as CSSProperties)
+                  : null),
+              }}
+              loading="lazy"
+            />
+          </LightboxTrigger>
         </div>
 
         <div ref={mainBoxRef} className="overflow-hidden rounded-2xl">
@@ -901,21 +923,25 @@ function FigureRow({ figures }: { figures: DetailFigure[] }) {
               soundToggle={Boolean(main.soundToggle)}
             />
           ) : main.gif ? (
-            <InViewGif
-              src={main.src}
-              alt={main.alt ?? main.caption ?? ""}
-              className="block h-full w-full object-contain"
-            />
+            <LightboxTrigger src={main.src} alt={main.alt ?? main.caption ?? ""}>
+              <InViewGif
+                src={main.src}
+                alt={main.alt ?? main.caption ?? ""}
+                className="block h-full w-full object-contain"
+              />
+            </LightboxTrigger>
           ) : (
-            <SmartImage
-              src={main.src}
-              alt={main.alt ?? main.caption ?? ""}
-              wrapClassName="w-full"
-              objectFit="contain"
-              className="block h-auto w-full object-contain"
-              style={figureImageStyle(main)}
-              loading="lazy"
-            />
+            <LightboxTrigger src={main.src} alt={main.alt ?? main.caption ?? ""}>
+              <SmartImage
+                src={main.src}
+                alt={main.alt ?? main.caption ?? ""}
+                wrapClassName="w-full"
+                objectFit="contain"
+                className="block h-auto w-full object-contain"
+                style={figureImageStyle(main)}
+                loading="lazy"
+              />
+            </LightboxTrigger>
           )}
         </div>
       </div>
@@ -1195,6 +1221,64 @@ function FigureStack({ figures }: { figures: DetailFigure[] }) {
   return <div className="space-y-6 lg:space-y-8">{nodes}</div>;
 }
 
+function ChartFrame({ figure }: { figure: DetailFigure }) {
+  const wrapRef = useRef<HTMLDivElement>(null);
+  const [squareH, setSquareH] = useState<number | undefined>(undefined);
+  const [leftH, setLeftH] = useState<number | undefined>(undefined);
+  const chrome = figure.chrome ?? 76;
+
+  useLayoutEffect(() => {
+    if (!figure.squarePlot) return;
+    const el = wrapRef.current;
+    if (!el) return;
+    const measure = () => setSquareH(el.clientWidth + chrome);
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, [figure.squarePlot, chrome]);
+
+  useLayoutEffect(() => {
+    if (!figure.matchLeft) return;
+    const wrap = wrapRef.current;
+    if (!wrap) return;
+    const left = wrap
+      .closest("[data-case-columns]")
+      ?.querySelector("[data-case-left]");
+    if (!(left instanceof HTMLElement)) return;
+    const measure = () => {
+      const next = Math.round(left.getBoundingClientRect().height);
+      if (next > 0) setLeftH(next);
+    };
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(left);
+    return () => ro.disconnect();
+  }, [figure.matchLeft]);
+
+  const height = figure.height ?? 520;
+  const framed = Boolean(figure.aspect) && !figure.squarePlot && !figure.matchLeft;
+  const boxStyle = figure.matchLeft
+    ? { height: leftH ?? 320 }
+    : figure.squarePlot
+      ? { height: squareH ?? undefined }
+      : framed
+        ? { aspectRatio: figure.aspect }
+        : { height };
+
+  return (
+    <div ref={wrapRef} className="relative w-full" style={boxStyle}>
+      <iframe
+        src={figure.src}
+        title={figure.alt ?? figure.caption ?? "Chart"}
+        className="absolute inset-0 block h-full w-full border-0 bg-transparent"
+        style={{ overflow: "hidden" }}
+        scrolling="no"
+      />
+    </div>
+  );
+}
+
 function FigureBlock({
   figure,
   className = "",
@@ -1212,6 +1296,31 @@ function FigureBlock({
       : undefined;
   const fixedFrame = Boolean(figure.aspect);
   const coverFit = figure.fit === "cover" || fixedFrame;
+
+  if (figure.embed) {
+    return (
+      <figure className={`min-w-0 w-full ${className}`}>
+        <div
+          className={`overflow-hidden bg-transparent ${
+            figure.rounded ? "rounded-[24px]" : ""
+          }`}
+          style={widthStyle}
+        >
+          <ChartFrame figure={figure} />
+        </div>
+        {figure.caption && (
+          <figcaption className="mt-3 text-[0.7rem] font-bold italic leading-[1.5] tracking-[0.02em] text-white/55">
+            {figure.caption}
+          </figcaption>
+        )}
+        {figure.body && (
+          <p className="mt-3 text-[0.8rem] font-bold leading-[1.7] tracking-[0.035em] text-white sm:text-[0.88rem]">
+            {figure.body}
+          </p>
+        )}
+      </figure>
+    );
+  }
 
   return (
     <figure className={`min-w-0 ${flush ? "w-full" : "w-full"} ${className}`}>
@@ -1234,29 +1343,39 @@ function FigureBlock({
             soundToggle={Boolean(figure.soundToggle)}
           />
         ) : figure.gif ? (
-          <InViewGif
+          <LightboxTrigger
             src={figure.src}
             alt={figure.alt ?? figure.caption ?? ""}
-            className={
-              fixedFrame
-                ? "h-full w-full object-cover"
-                : "h-auto w-full object-contain"
-            }
-          />
+          >
+            <InViewGif
+              src={figure.src}
+              alt={figure.alt ?? figure.caption ?? ""}
+              className={
+                fixedFrame
+                  ? "h-full w-full object-cover"
+                  : "h-auto w-full object-contain"
+              }
+            />
+          </LightboxTrigger>
         ) : (
-          <SmartImage
+          <LightboxTrigger
             src={figure.src}
             alt={figure.alt ?? figure.caption ?? ""}
-            wrapClassName={fixedFrame ? "h-full w-full" : "w-full"}
-            objectFit={coverFit ? "cover" : "contain"}
-            className={
-              fixedFrame
-                ? "h-full w-full object-cover"
-                : "h-auto w-full object-contain"
-            }
-            style={figureImageStyle(figure)}
-            loading="lazy"
-          />
+          >
+            <SmartImage
+              src={figure.src}
+              alt={figure.alt ?? figure.caption ?? ""}
+              wrapClassName={fixedFrame ? "h-full w-full" : "w-full"}
+              objectFit={coverFit ? "cover" : "contain"}
+              className={
+                fixedFrame
+                  ? "h-full w-full object-cover"
+                  : "h-auto w-full object-contain"
+              }
+              style={figureImageStyle(figure)}
+              loading="lazy"
+            />
+          </LightboxTrigger>
         )}
       </div>
       {figure.caption && (
@@ -1280,15 +1399,41 @@ function FigureBlock({
 }
 
 function TableBlock({ table }: { table: DetailTable }) {
+  const compact = Boolean(table.compact);
+  const headPad = compact
+    ? "px-1.5 py-2 sm:px-2"
+    : "px-2.5 py-2.5 first:pl-0 sm:px-3";
+
   return (
     <figure className="w-full overflow-x-auto">
-      <table className="min-w-full border-collapse text-left text-[0.7rem] sm:text-[0.78rem]">
+      <table
+        className={`min-w-full border-collapse text-left ${
+          compact ? "text-[0.65rem] sm:text-[0.72rem]" : "text-[0.7rem] sm:text-[0.78rem]"
+        }`}
+      >
         <thead>
+          {table.groups && (
+            <tr className="border-b border-white/20 bg-white/[0.06]">
+              {table.groups.map((g, i) => (
+                <th
+                  key={`${g.label}-${i}`}
+                  colSpan={g.span}
+                  className={`${headPad} font-bold tracking-[0.02em] text-white ${
+                    i === 0 ? "text-left" : "text-center"
+                  }`}
+                >
+                  {g.label}
+                </th>
+              ))}
+            </tr>
+          )}
           <tr className="border-b border-white/25 bg-white/[0.06]">
-            {table.headers.map((h) => (
+            {table.headers.map((h, i) => (
               <th
-                key={h}
-                className="px-2.5 py-2.5 font-bold tracking-[0.02em] text-white first:pl-0 sm:px-3"
+                key={`${h}-${i}`}
+                className={`${headPad} font-bold tracking-[0.02em] text-white ${
+                  i === 0 ? "text-left" : "text-center"
+                }`}
               >
                 {h}
               </th>
@@ -1298,19 +1443,19 @@ function TableBlock({ table }: { table: DetailTable }) {
         <tbody>
           {table.rows.map((row, rowIndex) => (
             <tr
-              key={row[0]}
+              key={`${row[0]}-${rowIndex}`}
               className={`border-b border-white/15 ${
                 rowIndex % 2 === 0 ? "bg-white/[0.03]" : "bg-transparent"
               }`}
             >
-              {row.map((cell, i) => (
+              {row.map((cellValue, i) => (
                 <td
                   key={`${row[0]}-${i}`}
-                  className={`px-2.5 py-2 font-bold text-white first:pl-0 sm:px-3 ${
-                    i === 0 ? "" : "text-center"
-                  }`}
+                  className={`${
+                    compact ? "px-1.5 py-1.5 sm:px-2" : "px-2.5 py-2 first:pl-0 sm:px-3"
+                  } font-bold text-white ${i === 0 ? "text-left" : "text-center tabular-nums"}`}
                 >
-                  {cell || "—"}
+                  {cellValue || "—"}
                 </td>
               ))}
             </tr>

@@ -29,12 +29,30 @@ export type DetailFigure = {
   aspect?: string;
   /** Optional poster image when `video` is true (cover hero) */
   poster?: string;
+  /** Standalone HTML chart; rendered in an iframe without rounded clipping */
+  embed?: boolean;
+  /** Initial iframe height in px when `embed` is true */
+  height?: number;
+  /** Plot is a square of the column width; iframe height = width + chrome */
+  squarePlot?: boolean;
+  /** Extra px above a square plot (tabs / axis names). Default 76 */
+  chrome?: number;
+  /** Round the embed frame (e.g. lieflat paper card) */
+  rounded?: boolean;
+  /** iframe height follows the sibling left column (tabs + plot, not caption) */
+  matchLeft?: boolean;
 };
 
 export type DetailTable = {
   caption?: string;
   headers: string[];
   rows: string[][];
+  /** Span the page width instead of a single column */
+  wide?: boolean;
+  /** Tighter cells so a wide table need not scroll sideways */
+  compact?: boolean;
+  /** Optional grouped header row above `headers` */
+  groups?: { label: string; span: number }[];
 };
 
 export type DetailPrototype = {
