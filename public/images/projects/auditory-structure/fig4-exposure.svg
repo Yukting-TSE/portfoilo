@@ -1,12 +1,69 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">
-  <defs>
-    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#ecece8"/>
-      <stop offset="100%" stop-color="#d4d4ce"/>
-    </linearGradient>
-  </defs>
-  <rect width="1400" height="900" fill="url(#g)"/>
-  <rect x="24" y="24" width="1352" height="852" fill="none" stroke="#b8b8b2" stroke-width="1.5" stroke-dasharray="8 7"/>
-  <text x="700.0" y="442.0" text-anchor="middle" fill="#6a6a6a" font-family="Helvetica Neue, Arial, sans-serif" font-size="22">占位图</text>
-  <text x="700.0" y="478.0" text-anchor="middle" fill="#8a8a8a" font-family="Helvetica Neue, Arial, sans-serif" font-size="16">图 4  固定累加顺序与计划对比所捆绑的差异（占位）</text>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="430.0pt" height="150.0pt" viewBox="0 0 430.0 150.0" role="img" aria-labelledby="t d">
+<title id="t"></title>
+<desc id="d"></desc>
+<rect width="100%" height="100%" fill="#FFFFFF"/>
+<text x="0.00" y="8.00" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="8.0" font-weight="700" fill="#081F5C" text-anchor="start">Condition is collinear with trial position</text>
+<text x="0.00" y="17.00" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="5.8" font-weight="400" fill="#334EAC" text-anchor="start">Every participant received exactly this order. No counterbalancing.</text>
+<text x="0.00" y="44.00" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="5.8" font-weight="700" fill="#081F5C" text-anchor="start">Block 1   simple path, 6 steps</text>
+<rect x="94.00" y="30.00" width="86.00" height="25.00" rx="4" ry="4" fill="#BAD6EB" stroke="#BAD6EB" stroke-width="0"/>
+<text x="137.00" y="41.00" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="7.0" font-weight="700" fill="#081F5C" text-anchor="middle">C1</text>
+<text x="137.00" y="50.00" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="5.8" font-weight="400" fill="#081F5C" text-anchor="middle">identity</text>
+<text x="137.00" y="62.00" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="5.8" font-weight="400" fill="#334EAC" text-anchor="middle">trial 1 · walk #1</text>
+<rect x="206.00" y="30.00" width="86.00" height="25.00" rx="4" ry="4" fill="#7096D1" stroke="#7096D1" stroke-width="0"/>
+<text x="249.00" y="41.00" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="7.0" font-weight="700" fill="#081F5C" text-anchor="middle">C2</text>
+<text x="249.00" y="50.00" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="5.8" font-weight="400" fill="#081F5C" text-anchor="middle">+ preview</text>
+<text x="249.00" y="62.00" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="5.8" font-weight="400" fill="#334EAC" text-anchor="middle">trial 2 · walk #2</text>
+<line x1="182.00" y1="42.50" x2="203.00" y2="42.50" stroke="#334EAC" stroke-width="1.62" fill="none"/>
+<line x1="200.60" y1="40.70" x2="203.00" y2="42.50" stroke="#334EAC" stroke-width="1.62" fill="none"/>
+<line x1="200.60" y1="44.30" x2="203.00" y2="42.50" stroke="#334EAC" stroke-width="1.62" fill="none"/>
+<rect x="318.00" y="30.00" width="86.00" height="25.00" rx="4" ry="4" fill="#081F5C" stroke="#081F5C" stroke-width="0"/>
+<text x="361.00" y="41.00" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="7.0" font-weight="700" fill="#FFFFFF" text-anchor="middle">C3</text>
+<text x="361.00" y="50.00" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="5.8" font-weight="400" fill="#FFFFFF" text-anchor="middle">+ error, replay</text>
+<text x="361.00" y="62.00" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="5.8" font-weight="400" fill="#334EAC" text-anchor="middle">trial 3 · walk #3</text>
+<line x1="294.00" y1="42.50" x2="315.00" y2="42.50" stroke="#334EAC" stroke-width="1.62" fill="none"/>
+<line x1="312.60" y1="40.70" x2="315.00" y2="42.50" stroke="#334EAC" stroke-width="1.62" fill="none"/>
+<line x1="312.60" y1="44.30" x2="315.00" y2="42.50" stroke="#334EAC" stroke-width="1.62" fill="none"/>
+<text x="0.00" y="86.00" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="5.8" font-weight="700" fill="#081F5C" text-anchor="start">Block 2   complex path, 10 steps</text>
+<rect x="94.00" y="72.00" width="86.00" height="25.00" rx="4" ry="4" fill="#BAD6EB" stroke="#BAD6EB" stroke-width="0"/>
+<text x="137.00" y="83.00" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="7.0" font-weight="700" fill="#081F5C" text-anchor="middle">C1</text>
+<text x="137.00" y="92.00" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="5.8" font-weight="400" fill="#081F5C" text-anchor="middle">identity</text>
+<text x="137.00" y="104.00" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="5.8" font-weight="400" fill="#334EAC" text-anchor="middle">trial 4 · walk #1</text>
+<rect x="206.00" y="72.00" width="86.00" height="25.00" rx="4" ry="4" fill="#7096D1" stroke="#7096D1" stroke-width="0"/>
+<text x="249.00" y="83.00" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="7.0" font-weight="700" fill="#081F5C" text-anchor="middle">C2</text>
+<text x="249.00" y="92.00" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="5.8" font-weight="400" fill="#081F5C" text-anchor="middle">+ preview</text>
+<text x="249.00" y="104.00" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="5.8" font-weight="400" fill="#334EAC" text-anchor="middle">trial 5 · walk #2</text>
+<line x1="182.00" y1="84.50" x2="203.00" y2="84.50" stroke="#334EAC" stroke-width="1.62" fill="none"/>
+<line x1="200.60" y1="82.70" x2="203.00" y2="84.50" stroke="#334EAC" stroke-width="1.62" fill="none"/>
+<line x1="200.60" y1="86.30" x2="203.00" y2="84.50" stroke="#334EAC" stroke-width="1.62" fill="none"/>
+<rect x="318.00" y="72.00" width="86.00" height="25.00" rx="4" ry="4" fill="#081F5C" stroke="#081F5C" stroke-width="0"/>
+<text x="361.00" y="83.00" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="7.0" font-weight="700" fill="#FFFFFF" text-anchor="middle">C3</text>
+<text x="361.00" y="92.00" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="5.8" font-weight="400" fill="#FFFFFF" text-anchor="middle">+ error, replay</text>
+<text x="361.00" y="104.00" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="5.8" font-weight="400" fill="#334EAC" text-anchor="middle">trial 6 · walk #3</text>
+<line x1="294.00" y1="84.50" x2="315.00" y2="84.50" stroke="#334EAC" stroke-width="1.62" fill="none"/>
+<line x1="312.60" y1="82.70" x2="315.00" y2="84.50" stroke="#334EAC" stroke-width="1.62" fill="none"/>
+<line x1="312.60" y1="86.30" x2="315.00" y2="84.50" stroke="#334EAC" stroke-width="1.62" fill="none"/>
+<line x1="0.00" y1="108.00" x2="430.00" y2="108.00" stroke="#D0E3FF" stroke-width="0.7" fill="none"/>
+<text x="0.00" y="117.00" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="5.8" font-weight="700" fill="#334EAC" text-anchor="start">contrast</text>
+<text x="68.00" y="117.00" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="5.8" font-weight="700" fill="#334EAC" text-anchor="start">sound difference</text>
+<text x="190.00" y="117.00" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="5.8" font-weight="700" fill="#334EAC" text-anchor="start">positions apart</text>
+<text x="268.00" y="117.00" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="5.8" font-weight="700" fill="#334EAC" text-anchor="start">isolates one component</text>
+<text x="380.00" y="117.00" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="5.8" font-weight="700" fill="#334EAC" text-anchor="start">role</text>
+<rect x="-2.00" y="121.00" width="432.00" height="10.00" rx="2" ry="2" fill="#EEF4FB" stroke="#EEF4FB" stroke-width="0"/>
+<text x="0.00" y="128.00" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="5.8" font-weight="700" fill="#081F5C" text-anchor="start">C3 − C2</text>
+<text x="68.00" y="128.00" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="5.8" font-weight="700" fill="#081F5C" text-anchor="start">error sound and position replay</text>
+<text x="190.00" y="128.00" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="5.8" font-weight="700" fill="#081F5C" text-anchor="start">1</text>
+<text x="268.00" y="128.00" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="5.8" font-weight="700" fill="#081F5C" text-anchor="start">yes</text>
+<text x="380.00" y="128.00" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="5.8" font-weight="700" fill="#081F5C" text-anchor="start">primary</text>
+<circle cx="281.22" cy="126.00" r="1.9" fill="#081F5C" stroke="#081F5C" stroke-width="0.7"/>
+<text x="0.00" y="137.00" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="5.8" font-weight="400" fill="#081F5C" text-anchor="start">C3 − C1</text>
+<text x="68.00" y="137.00" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="5.8" font-weight="400" fill="#081F5C" text-anchor="start">preview + error sound and replay</text>
+<text x="190.00" y="137.00" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="5.8" font-weight="400" fill="#081F5C" text-anchor="start">2</text>
+<text x="268.00" y="137.00" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="5.8" font-weight="400" fill="#081F5C" text-anchor="start">no</text>
+<text x="380.00" y="137.00" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="5.8" font-weight="400" fill="#081F5C" text-anchor="start">secondary</text>
+<text x="0.00" y="146.00" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="5.8" font-weight="400" fill="#081F5C" text-anchor="start">C2 − C1</text>
+<text x="68.00" y="146.00" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="5.8" font-weight="400" fill="#081F5C" text-anchor="start">preview only</text>
+<text x="190.00" y="146.00" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="5.8" font-weight="400" fill="#081F5C" text-anchor="start">1</text>
+<text x="268.00" y="146.00" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="5.8" font-weight="400" fill="#081F5C" text-anchor="start">no</text>
+<text x="380.00" y="146.00" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="5.8" font-weight="400" fill="#081F5C" text-anchor="start">secondary</text>
 </svg>

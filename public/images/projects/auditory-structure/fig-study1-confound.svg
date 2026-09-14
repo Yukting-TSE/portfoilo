@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="400" viewBox="0 0 1024 400" role="img" aria-labelledby="t d">
+  <title id="t">C3 minus C2 mixes feedback with one extra walk</title>
+  <desc id="d">C2 is preview plus the second walk. C3 is preview plus feedback plus the third walk. A brace between them marks that the difference cannot be split into a feedback effect and a practice effect.</desc>
+  <rect width="1024" height="400" fill="#FFFFFF"/>
+
+  <rect x="48" y="72" width="320" height="200" rx="18" fill="#F3F6FA"/>
+  <text x="208" y="148" text-anchor="middle" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="40" font-weight="700" fill="#111111">C2</text>
+  <text x="208" y="196" text-anchor="middle" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="18" font-weight="500" fill="#444444">Preview + 2nd walk</text>
+
+  <rect x="656" y="72" width="320" height="200" rx="18" fill="#D6E6FF"/>
+  <text x="816" y="140" text-anchor="middle" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="40" font-weight="700" fill="#111111">C3</text>
+  <text x="816" y="186" text-anchor="middle" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="18" font-weight="500" fill="#444444">Preview + Feedback</text>
+  <text x="816" y="214" text-anchor="middle" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="18" font-weight="500" fill="#444444">+ 3rd walk</text>
+
+  <!-- Center brace -->
+  <text x="512" y="230" text-anchor="middle" font-family="Georgia, Times New Roman, serif" font-size="168" font-weight="400" fill="#7EB3EA">{</text>
+
+  <text x="512" y="348" text-anchor="middle" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="22" font-weight="700" fill="#111111">Feedback effect? + Practice effect?</text>
+</svg>

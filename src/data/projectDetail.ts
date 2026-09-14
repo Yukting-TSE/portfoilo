@@ -101,6 +101,10 @@ export type DetailSection =
       lead?: string;
       /** Tighter divider spacing between items */
       compact?: boolean;
+      /** Top and bottom rules on each item (e.g. paired research questions) */
+      ruled?: boolean;
+      /** Equal cards in a row instead of a stacked list */
+      layout?: "cards";
       /** Push down to align with sibling prose body (skip matching title row) */
       offsetTitle?: boolean;
       items: { title: string; body: string; figure?: DetailFigure }[];

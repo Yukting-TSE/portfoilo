@@ -213,7 +213,7 @@ export function CaseStudy({
         </div>
       )}
 
-      <div className="mt-14 space-y-14 px-5 sm:mt-16 sm:px-8 lg:mt-20 lg:space-y-20 lg:px-12">
+      <div className="mt-16 space-y-20 px-5 sm:mt-20 sm:px-8 lg:mt-24 lg:space-y-28 lg:px-12">
         {bodySections.map((section, i) => (
           <BodySection key={`${section.type}-${i}`} section={section} />
         ))}
@@ -698,6 +698,10 @@ function BodySection({ section }: { section: DetailSection }) {
     );
   }
 
+  if (section.type === "goals" && section.ruled && section.items.length > 1) {
+    return <SectionBlock section={section} />;
+  }
+
   return (
     <div className="grid items-start gap-x-12 lg:grid-cols-2 xl:gap-x-20">
       <div className="w-full max-w-xl">
@@ -714,7 +718,7 @@ function PartHeader({
   section: Extract<DetailSection, { type: "part" }>;
 }) {
   return (
-    <header className="w-full max-w-xl pt-2 lg:pt-4">
+    <header className="w-full max-w-xl pt-8 lg:pt-12">
       <h2 className="font-[family-name:var(--font-display)] text-[clamp(1.65rem,3.2vw,2.5rem)] font-bold leading-[1.05] tracking-[-0.045em] text-white">
         {section.title}
       </h2>
@@ -739,11 +743,11 @@ function SectionBlock({ section }: { section: DetailSection }) {
               {section.title}
             </h3>
           )}
-          <div className="space-y-5">
+          <div className="space-y-6">
             {section.paragraphs.map((p, i) => (
               <p
                 key={`${i}-${p.slice(0, 24)}`}
-                className={`text-[0.8rem] leading-[1.75] tracking-[0.035em] text-white sm:text-[0.88rem] ${
+                className={`text-[0.8rem] leading-[1.85] tracking-[0.03em] text-white sm:text-[0.88rem] ${
                   section.weight === "normal" ? "font-normal" : "font-bold"
                 } ${p.includes("\n") ? "whitespace-pre-line" : ""}`}
               >
@@ -761,7 +765,38 @@ function SectionBlock({ section }: { section: DetailSection }) {
       return <TableBlock table={section.table} />;
 
     case "goals": {
+      if (section.layout === "cards") {
+        return (
+          <section>
+            {section.heading && (
+              <h3 className="mb-4 font-[family-name:var(--font-display)] text-[clamp(0.95rem,1.5vw,1.15rem)] font-bold tracking-[-0.02em] text-white">
+                {section.heading}
+              </h3>
+            )}
+            <div className="grid grid-cols-1 gap-3">
+              {section.items.map((item, i) => (
+                <div
+                  key={`${item.title}-${i}`}
+                  className="rounded-2xl border border-white/25 bg-white/[0.06] px-5 py-4"
+                >
+                  <p className="mb-2 font-[family-name:var(--font-display)] text-[0.68rem] font-bold tracking-[0.14em] text-white/45">
+                    {String(i + 1).padStart(2, "0")}
+                  </p>
+                  <h3 className="mb-1.5 font-[family-name:var(--font-display)] text-[0.95rem] font-bold leading-snug tracking-[-0.02em] text-white">
+                    {item.title}
+                  </h3>
+                  <p className="text-[0.75rem] font-bold leading-[1.65] tracking-[0.03em] text-white/85 sm:text-[0.8rem]">
+                    {item.body}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </section>
+        );
+      }
+
       const compact = Boolean(section.compact);
+      const splitRuled = Boolean(section.ruled) && section.items.length > 1;
       const goals = (
         <section
           className={
@@ -782,6 +817,51 @@ function SectionBlock({ section }: { section: DetailSection }) {
               {section.lead}
             </p>
           )}
+          {splitRuled ? (
+            <div className="grid grid-cols-1 items-start gap-x-12 lg:grid-cols-2 xl:gap-x-20">
+              {[
+                section.items.filter((_, i) => i % 2 === 0),
+                section.items.filter((_, i) => i % 2 === 1),
+              ].map((col, ci) =>
+                col.length === 0 ? null : (
+                  <div
+                    key={`goals-col-${ci}`}
+                    className={ci === 0 ? "w-full max-w-xl" : "w-full"}
+                  >
+                    {col.map((item, i) => {
+                      const isFirst = i === 0;
+                      const isLast = i === col.length - 1;
+                      const hasRight = ci === 0 && section.items.some((_, idx) => idx % 2 === 1);
+                      const rules =
+                        isFirst && isLast
+                          ? "border-y"
+                          : isFirst
+                            ? "border-t"
+                            : isLast
+                              ? hasRight
+                                ? "border-t lg:border-b"
+                                : "border-t border-b"
+                              : "border-t";
+                      return (
+                        <div
+                          key={`${item.title}-${i}`}
+                          className={`${rules} border-white/25 py-3.5`}
+                        >
+                          <h3 className="mb-1.5 font-[family-name:var(--font-display)] text-[1rem] font-bold tracking-[-0.02em] text-white">
+                            {item.title}
+                          </h3>
+                          <p className="text-[0.8rem] font-bold leading-[1.7] tracking-[0.035em] text-white sm:text-[0.88rem]">
+                            {item.body}
+                          </p>
+                        </div>
+                      );
+                    })}
+                  </div>
+                ),
+              )}
+            </div>
+          ) : (
+          <div>
           {section.items.map((item, i) => (
             <div
               key={`${item.title}-${i}`}
@@ -790,10 +870,10 @@ function SectionBlock({ section }: { section: DetailSection }) {
                   ? "border-t border-white/20 pt-5 first:border-t-0 first:pt-0"
                   : compact
                     ? `border-t border-white/25 py-3.5 ${
-                        section.lead && i === 0
-                          ? "mt-3 border-t-0 pt-0"
-                          : "first:border-t-0 first:pt-0"
-                      }`
+                          section.lead && i === 0
+                            ? "mt-3 border-t-0 pt-0"
+                            : "first:border-t-0 first:pt-0"
+                        }`
                     : "border-t border-white/25 pt-6"
               }
             >
@@ -809,6 +889,8 @@ function SectionBlock({ section }: { section: DetailSection }) {
               </p>
             </div>
           ))}
+          </div>
+          )}
         </section>
       );
 
@@ -1441,25 +1523,42 @@ function TableBlock({ table }: { table: DetailTable }) {
           </tr>
         </thead>
         <tbody>
-          {table.rows.map((row, rowIndex) => (
-            <tr
-              key={`${row[0]}-${rowIndex}`}
-              className={`border-b border-white/15 ${
-                rowIndex % 2 === 0 ? "bg-white/[0.03]" : "bg-transparent"
-              }`}
-            >
-              {row.map((cellValue, i) => (
-                <td
-                  key={`${row[0]}-${i}`}
-                  className={`${
-                    compact ? "px-1.5 py-1.5 sm:px-2" : "px-2.5 py-2 first:pl-0 sm:px-3"
-                  } font-bold text-white ${i === 0 ? "text-left" : "text-center tabular-nums"}`}
-                >
-                  {cellValue || "—"}
-                </td>
-              ))}
-            </tr>
-          ))}
+          {table.rows.map((row, rowIndex) => {
+            const isSection = row.length === 1;
+            if (isSection) {
+              return (
+                <tr key={`${row[0]}-${rowIndex}`} className="border-b border-white/25">
+                  <td
+                    colSpan={table.headers.length}
+                    className={`${
+                      compact ? "px-1.5 pb-1.5 pt-5 sm:px-2" : "px-2.5 pb-2 pt-6 first:pl-0 sm:px-3"
+                    } font-bold tracking-[0.08em] text-white`}
+                  >
+                    {row[0]}
+                  </td>
+                </tr>
+              );
+            }
+            return (
+              <tr
+                key={`${row[0]}-${rowIndex}`}
+                className={`border-b border-white/15 ${
+                  rowIndex % 2 === 0 ? "bg-white/[0.03]" : "bg-transparent"
+                }`}
+              >
+                {row.map((cellValue, i) => (
+                  <td
+                    key={`${row[0]}-${i}`}
+                    className={`${
+                      compact ? "px-1.5 py-1.5 sm:px-2" : "px-2.5 py-2 first:pl-0 sm:px-3"
+                    } font-bold text-white ${i === 0 ? "text-left" : "text-center tabular-nums"}`}
+                  >
+                    {cellValue || "—"}
+                  </td>
+                ))}
+              </tr>
+            );
+          })}
         </tbody>
       </table>
       {table.caption && (

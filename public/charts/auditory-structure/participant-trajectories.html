@@ -132,9 +132,9 @@
     const mapY = (v) => BOT - (v - meta.lo) / (meta.hi - meta.lo) * (BOT - TOP);
 
     DIMS.forEach((name, di) => {
-      el(s, 'line', { x1: AX[di], y1: TOP, x2: AX[di], y2: BOT, stroke: P.FAINT, 'stroke-width': 2.6 });
-      el(s, 'line', { x1: AX[di] - 6, y1: TOP, x2: AX[di] + 6, y2: TOP, stroke: P.FAINT, 'stroke-width': 2.6 });
-      el(s, 'line', { x1: AX[di] - 6, y1: BOT, x2: AX[di] + 6, y2: BOT, stroke: P.FAINT, 'stroke-width': 2.6 });
+      el(s, 'line', { x1: AX[di], y1: TOP, x2: AX[di], y2: BOT, stroke: P.FAINT, 'stroke-width': 1.4 });
+      el(s, 'line', { x1: AX[di] - 6, y1: TOP, x2: AX[di] + 6, y2: TOP, stroke: P.FAINT, 'stroke-width': 1.4 });
+      el(s, 'line', { x1: AX[di] - 6, y1: BOT, x2: AX[di] + 6, y2: BOT, stroke: P.FAINT, 'stroke-width': 1.4 });
       const side = di === 2 ? 'end' : 'start';
       const tx = di === 2 ? AX[di] - 8 : AX[di] + 8;
       txt(s, { x: tx, y: TOP + 16, 'font-size': 13, 'font-weight': 600, fill: P.FAINT,
@@ -157,13 +157,13 @@
       const vals = valsOf(row, key);
       const ys = vals.map((v) => v == null ? null : mapY(v));
       const d = cubic(AX, ys);
-      el(s, 'path', { d, fill: 'none', stroke: P.DATA, 'stroke-width': 2.6,
-        opacity: .55 + rnd(i + 1, 5) * .35, class: 'thread', 'data-id': row[0] });
+      el(s, 'path', { d, fill: 'none', stroke: P.DATA, 'stroke-width': 1.15,
+        opacity: .5 + rnd(i + 1, 5) * .32, class: 'thread', 'data-id': row[0] });
       const hit = el(s, 'path', { d, fill: 'none', stroke: 'transparent', 'stroke-width': 14,
         class: 'hit', 'data-id': row[0] });
       ys.forEach((y, di) => {
         if (y == null) return;
-        el(s, 'circle', { cx: AX[di], cy: y, r: 3.2, fill: P.DATA, opacity: .85,
+        el(s, 'circle', { cx: AX[di], cy: y, r: 2.15, fill: P.DATA, opacity: .85,
           class: 'bead', 'data-id': row[0] });
       });
 
@@ -205,9 +205,9 @@
     const m = MEAN[key];
     const mys = m.map(mapY);
     const md = cubic(AX, mys);
-    el(s, 'path', { d: md, fill: 'none', stroke: P.HERO, 'stroke-width': 4.4, opacity: 1,
+    el(s, 'path', { d: md, fill: 'none', stroke: P.HERO, 'stroke-width': 2.4, opacity: 1,
       class: 'thread', 'data-id': 'MEAN' });
-    mys.forEach((y, di) => el(s, 'circle', { cx: AX[di], cy: y, r: 5.2, fill: P.HERO,
+    mys.forEach((y, di) => el(s, 'circle', { cx: AX[di], cy: y, r: 3.4, fill: P.HERO,
       class: 'bead', 'data-id': 'MEAN' }));
     txt(s, { x: AX[2] - 10, y: mys[2] + 5, 'font-size': 15, 'font-weight': 700, fill: P.HERO,
       'text-anchor': 'end', style: `paint-order:stroke;stroke:${P.HALO};stroke-width:3px` }, '均值');
