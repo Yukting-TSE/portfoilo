@@ -7,14 +7,19 @@ import { publicUrl } from "../lib/publicUrl";
 export const MOTION_DEBUG = false;
 
 export const motion = {
+  /** animejs named easings — prefer ease-out for enter */
   easeOut: "outExpo",
   easeInOut: "inOutCubic",
   easeSoft: "outQuad",
+  /** CSS cubic-bezier mirrors of Emil tokens */
+  cssEaseOut: "cubic-bezier(0.23, 1, 0.32, 1)",
+  cssEaseInOut: "cubic-bezier(0.77, 0, 0.175, 1)",
 
-  fast: 300,
-  medium: 600,
-  slow: 1000,
-  reveal: 1100,
+  fast: 200,
+  medium: 420,
+  /** Scroll marketing reveals may exceed UI 300ms budget */
+  slow: 560,
+  reveal: 720,
 
   pointerEase: 0.08,
   parallaxEase: 0.06,

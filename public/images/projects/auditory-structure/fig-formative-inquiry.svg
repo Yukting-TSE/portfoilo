@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="500" viewBox="0 0 1600 500" role="img" aria-labelledby="title desc">
+  <title id="title">形成性探询：三类中断与定向内容分析</title>
+  <desc id="desc">三张问题卡片：状态难以区分、下一步不明确、错误难以确认与恢复。下方为论文中的定向内容分析：12 人半结构访谈、理论驱动编码、双人独立标注 κ=.80，再映射到 Study 1 的错误、纠正与恢复。</desc>
+  <defs>
+    <style>
+      .bg { fill: #eaf2ff; }
+      .card { fill: #ffffff; }
+      .card-line { fill: none; stroke: #d6e4f5; stroke-width: 1.5; }
+      .num { fill: #2563eb; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 700; letter-spacing: 0.08em; }
+      .card-title { fill: #111827; font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif; font-size: 26px; font-weight: 700; }
+      .card-body { fill: #4b5563; font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif; font-size: 16px; }
+      .row-label { fill: #2563eb; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.12em; }
+      .node { fill: #ffffff; }
+      .node-line { fill: none; stroke: #d6e4f5; stroke-width: 1.5; }
+      .node-hi { fill: #3b82f6; }
+      .node-title { fill: #111827; font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif; font-size: 16px; font-weight: 700; }
+      .node-sub { fill: #6b7280; font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif; font-size: 13px; }
+      .node-title-hi { fill: #ffffff; font-family: "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Microsoft YaHei", sans-serif; font-size: 16px; font-weight: 700; }
+      .node-sub-hi { fill: #dbeafe; font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif; font-size: 13px; }
+      .kappa { fill: #2563eb; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 13px; font-weight: 700; }
+      .arrow { fill: none; stroke: #93c5fd; stroke-width: 1.75; }
+    </style>
+    <marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 1.4 L 8 5 L 0 8.6 z" fill="#93c5fd"/>
+    </marker>
+  </defs>
+  <rect class="bg" width="1600" height="500"/>
+  <g>
+    <rect class="card" x="32" y="28" width="498" height="268" rx="16"/>
+    <rect class="card-line" x="32" y="28" width="498" height="268" rx="16"/>
+    <text class="num" x="56" y="68">01</text>
+    <text class="card-title" x="56" y="118">状态难以区分</text>
+    <text class="card-body" x="56" y="168">
+      <tspan x="56" dy="0">用户无法确定自己当前</tspan>
+      <tspan x="56" dy="28">处于什么状态或位置。</tspan>
+    </text>
+  </g>
+  <g>
+    <rect class="card" x="551" y="28" width="498" height="268" rx="16"/>
+    <rect class="card-line" x="551" y="28" width="498" height="268" rx="16"/>
+    <text class="num" x="575" y="68">02</text>
+    <text class="card-title" x="575" y="118">下一步不明确</text>
+    <text class="card-body" x="575" y="168">
+      <tspan x="575" dy="0">用户知道当前信息，却难以</tspan>
+      <tspan x="575" dy="28">判断接下来应该采取什么操作。</tspan>
+    </text>
+  </g>
+  <g>
+    <rect class="card" x="1070" y="28" width="498" height="268" rx="16"/>
+    <rect class="card-line" x="1070" y="28" width="498" height="268" rx="16"/>
+    <text class="num" x="1094" y="68">03</text>
+    <text class="card-title" x="1094" y="118">错误难以确认与恢复</text>
+    <text class="card-body" x="1094" y="168">
+      <tspan x="1094" dy="0">发生偏差后，用户难以确认错误</tspan>
+      <tspan x="1094" dy="28">的位置，以及自己是否已经</tspan>
+      <tspan x="1094" dy="28">恢复到正确状态。</tspan>
+    </text>
+  </g>
+  <text class="row-label" x="32" y="336">DIRECTED CONTENT ANALYSIS</text>
+  <g>
+    <rect class="node" x="32" y="352" width="248" height="116" rx="12"/>
+    <rect class="node-line" x="32" y="352" width="248" height="116" rx="12"/>
+    <text class="node-title" x="156" y="400" text-anchor="middle">半结构访谈</text>
+    <text class="node-sub" x="156" y="428" text-anchor="middle">12 名参与者</text>
+  </g>
+  <path class="arrow" d="M 288 410 H 318" marker-end="url(#ah)"/>
+  <g>
+    <rect class="node" x="326" y="352" width="248" height="116" rx="12"/>
+    <rect class="node-line" x="326" y="352" width="248" height="116" rx="12"/>
+    <text class="node-title" x="450" y="400" text-anchor="middle">定向内容分析</text>
+    <text class="node-sub" x="450" y="428" text-anchor="middle">理论驱动编码</text>
+  </g>
+  <path class="arrow" d="M 582 410 H 612" marker-end="url(#ah)"/>
+  <g>
+    <rect class="node" x="620" y="352" width="248" height="116" rx="12"/>
+    <rect class="node-line" x="620" y="352" width="248" height="116" rx="12"/>
+    <text class="node-title" x="744" y="400" text-anchor="middle">独立双编码</text>
+    <text class="kappa" x="744" y="428" text-anchor="middle">κ = .80</text>
+  </g>
+  <path class="arrow" d="M 876 410 H 906" marker-end="url(#ah)"/>
+  <g>
+    <rect class="node" x="914" y="352" width="248" height="116" rx="12"/>
+    <rect class="node-line" x="914" y="352" width="248" height="116" rx="12"/>
+    <text class="node-title" x="1038" y="400" text-anchor="middle">三类反复中断</text>
+    <text class="node-sub" x="1038" y="428" text-anchor="middle">编码结果汇总</text>
+  </g>
+  <path class="arrow" d="M 1170 410 H 1200" marker-end="url(#ah)"/>
+  <g>
+    <rect class="node-hi" x="1208" y="352" width="360" height="116" rx="12"/>
+    <text class="node-title-hi" x="1388" y="400" text-anchor="middle">Study 1</text>
+    <text class="node-sub-hi" x="1388" y="428" text-anchor="middle">记录错误、纠正与恢复</text>
+  </g>
+</svg>

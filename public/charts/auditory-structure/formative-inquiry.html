@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>非视觉交互在三处反复中断</title>
+<style>
+  :root{
+    --bg:#FFFFFF;
+    --ink:#081F5C;
+    --muted:rgba(8,31,92,.60);
+    --faint:rgba(8,31,92,.32);
+    --sans:"HelveticaNowDisplay-Medium","Helvetica Neue",Helvetica,Arial,"PingFang SC","Microsoft YaHei",sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--ink);border-radius:24px}
+  body{font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  .card,svg{width:100%;height:100%;display:block;background:var(--bg)}
+  svg text{font-family:var(--sans);user-select:none}
+  .fade{animation:fade .9s ease both}
+  @keyframes fade{from{opacity:0}}
+  @media (prefers-reduced-motion:reduce){
+    .fade{animation:none}
+  }
+</style>
+</head>
+<body>
+<div class="card">
+  <svg id="formative" viewBox="0 0 960 300" preserveAspectRatio="xMidYMid meet"></svg>
+</div>
+<script>
+(function () {
+  'use strict';
+  const PAPER = '#FFFFFF';
+  const INK = '#081F5C';
+  const DATA = '#334EAC';
+  const MUTED = 'rgba(8,31,92,.60)';
+  const FAINT = 'rgba(8,31,92,.32)';
+  const PANEL = '#F4F5F7';
+  const NS = 'http://www.w3.org/2000/svg';
+  const el = (p, t, a) => { const n = document.createElementNS(NS, t);
+    for (const k in a) n.setAttribute(k, a[k]); p.appendChild(n); return n; };
+  const txt = (p, a, s) => { const n = el(p, 'text', a); n.textContent = s; return n; };
+
+  const CARDS = [
+    {
+      n: '01',
+      title: '状态难以区分',
+      lines: ['用户无法确定自己当前', '处于什么状态或位置。'],
+      map: '区分性失败'
+    },
+    {
+      n: '02',
+      title: '下一步不明确',
+      lines: ['用户知道当前信息，却难以', '判断接下来应该采取什么操作。'],
+      map: '预测性失效'
+    },
+    {
+      n: '03',
+      title: '错误难以确认与恢复',
+      lines: ['发生偏差后，难以确认错误的位置，', '以及自己是否已恢复到正确状态。'],
+      map: '可控性失败'
+    }
+  ];
+
+  const root = document.getElementById('formative');
+  const draw = () => {
+    root.innerHTML = '';
+    el(root, 'rect', { width: 960, height: 300, fill: PAPER });
+
+    txt(root, {
+      x: 36, y: 40, fill: INK, 'font-size': 18, 'font-weight': 700,
+      'letter-spacing': '-.02em', class: 'fade'
+    }, '非视觉交互在三处反复中断');
+    txt(root, {
+      x: 36, y: 62, fill: MUTED, 'font-size': 12, class: 'fade',
+      style: 'animation-delay:.08s'
+    }, '12 名参与者 · 半结构访谈 · 定向内容分析');
+
+    const gap = 16;
+    const x0 = 36;
+    const cw = (960 - 72 - gap * 2) / 3;
+    const cy = 84;
+    const ch = 188;
+    CARDS.forEach((c, i) => {
+      const x = x0 + i * (cw + gap);
+      const g = el(root, 'g', { class: 'fade', style: `animation-delay:${0.12 + i * 0.1}s` });
+      el(g, 'rect', { x, y: cy, width: cw, height: ch, rx: 24, fill: PANEL });
+      txt(g, {
+        x: x + 22, y: cy + 38, fill: DATA, 'font-size': 13, 'font-weight': 700,
+        'letter-spacing': '.12em'
+      }, c.n);
+      txt(g, {
+        x: x + 22, y: cy + 72, fill: INK, 'font-size': 18, 'font-weight': 700,
+        'letter-spacing': '-.02em'
+      }, c.title);
+      c.lines.forEach((line, li) => {
+        txt(g, {
+          x: x + 22, y: cy + 106 + li * 20, fill: MUTED, 'font-size': 13, 'font-weight': 600
+        }, line);
+      });
+      txt(g, {
+        x: x + 22, y: cy + 164, fill: FAINT, 'font-size': 11, 'font-weight': 700,
+        'letter-spacing': '.08em'
+      }, c.map);
+    });
+  };
+
+  draw();
+  root.style.cursor = 'pointer';
+  root.addEventListener('click', draw);
+})();
+</script>
+</body>
+</html>

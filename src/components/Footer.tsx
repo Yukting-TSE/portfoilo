@@ -18,7 +18,13 @@ export function Footer({ onOpenContact }: Props) {
   return (
     <footer
       id="contact"
-      className="relative z-[1] flex h-[100svh] min-h-[100svh] flex-col justify-between overflow-hidden bg-black px-[clamp(1.25rem,2.2vw,2rem)] pb-[clamp(0.85rem,1.6vw,1.35rem)] pt-[clamp(1.25rem,2.2vw,2rem)] text-white"
+      className="relative z-[1] flex h-[100svh] min-h-[100svh] flex-col justify-between overflow-hidden bg-black px-[clamp(1.25rem,2.2vw,2rem)] text-white"
+      style={{
+        paddingTop:
+          "max(clamp(1.25rem,2.2vw,2rem), env(safe-area-inset-top, 0px))",
+        paddingBottom:
+          "max(clamp(0.85rem,1.6vw,1.35rem), env(safe-area-inset-bottom, 0px))",
+      }}
     >
       <div
         className="pointer-events-none absolute inset-0"
@@ -61,13 +67,13 @@ export function Footer({ onOpenContact }: Props) {
         <button
           type="button"
           onClick={onOpenContact}
-          className="group flex w-full items-center justify-between gap-4 bg-white px-[clamp(1.25rem,2.2vw,2rem)] py-[clamp(0.85rem,1.5vw,1.35rem)] text-left text-black transition-opacity duration-300 hover:opacity-90"
+          className="footer-cta pressable flex w-full items-center justify-between gap-4 bg-white px-[clamp(1.25rem,2.2vw,2rem)] py-[clamp(0.85rem,1.5vw,1.35rem)] text-left text-black"
         >
           <span className="font-[family-name:var(--font-display)] text-[clamp(1.15rem,2.25vw,2.7rem)] font-bold tracking-[-0.03em]">
             Get in touch
           </span>
           <span
-            className="font-[family-name:var(--font-display)] text-[clamp(1.15rem,2.25vw,2.7rem)] leading-none transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+            className="footer-cta-arrow font-[family-name:var(--font-display)] text-[clamp(1.15rem,2.25vw,2.7rem)] leading-none transition-transform duration-[200ms] [transition-timing-function:var(--ease-out)]"
             aria-hidden
           >
             →
@@ -88,14 +94,14 @@ export function Footer({ onOpenContact }: Props) {
                       ? link.to
                       : { pathname: "/", hash: `#${link.hash}` }
                   }
-                  className="transition-opacity duration-200 hover:opacity-55"
+                  className="footer-link transition-opacity duration-[200ms]"
                 >
                   {link.label}
                 </Link>
               ))}
               <a
                 href={`mailto:${profile.email}`}
-                className="transition-opacity duration-200 hover:opacity-55"
+                className="footer-link transition-opacity duration-[200ms]"
               >
                 {profile.email}
               </a>
@@ -113,7 +119,7 @@ export function Footer({ onOpenContact }: Props) {
           <div className="leading-[1.5] lg:text-right">
             <a
               href={`tel:${profile.phone.replace(/\s/g, "")}`}
-              className="block transition-opacity duration-200 hover:opacity-55"
+              className="footer-link block transition-opacity duration-[200ms]"
             >
               {profile.phone}
             </a>

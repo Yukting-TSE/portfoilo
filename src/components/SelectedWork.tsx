@@ -85,14 +85,14 @@ export function SelectedWork() {
                   window.history.replaceState(null, "", `#cat-${cat.id}`);
                 }
               }}
-              className={`group relative shrink-0 whitespace-nowrap py-1.5 text-[0.95rem] tracking-[0.02em] transition-all duration-300 ${
+              className={`works-cat-link relative shrink-0 whitespace-nowrap py-1.5 text-[0.95rem] tracking-[0.02em] transition-[color,transform] duration-[200ms] [transition-timing-function:var(--ease-out)] ${
                 active === cat.id
                   ? "translate-x-0 text-[var(--fg)] lg:translate-x-1"
-                  : "text-[var(--gray)] hover:translate-x-1 hover:text-[var(--fg)]"
+                  : "text-[var(--gray)]"
               }`}
             >
               <span
-                className={`mr-2 inline-block h-[1px] w-0 align-middle transition-all duration-300 group-hover:w-3 ${
+                className={`works-cat-tick mr-2 inline-block h-[1px] w-0 align-middle transition-[width,background-color] duration-[200ms] [transition-timing-function:var(--ease-out)] ${
                   active === cat.id
                     ? "w-3 bg-[var(--fg)]"
                     : "bg-[var(--gray)]"
@@ -159,11 +159,12 @@ function CategoryHeading({ id, label }: { id: string; label: string }) {
       return;
     }
 
+    // Enter = ease-out; marketing scroll reveal may exceed UI 300ms budget
     animate(el, {
       opacity: [0, 1],
-      translateY: [40, 0],
+      translateY: [28, 0],
       duration: motion.slow,
-      ease: "inOutCubic",
+      ease: motion.easeOut,
     });
   }, [inView, ref, hashTarget]);
 
@@ -217,22 +218,19 @@ function ProjectRow({ project }: { project: Project }) {
     <article ref={ref} className="project-row">
       <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-[minmax(0,32%)_minmax(0,68%)] lg:gap-10 xl:gap-14">
         <div
-          className="flex min-h-0 flex-col justify-between gap-8 transition-colors duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] lg:gap-10 lg:py-1"
+          className="flex min-h-0 flex-col justify-between gap-8 transition-colors duration-500 [transition-timing-function:var(--ease-out)] lg:gap-10 lg:py-1"
           style={{
             color:
               focused || !desktopScale ? "var(--fg)" : "rgba(245,245,242,0.32)",
           }}
         >
           <h3 className="font-[family-name:var(--font-display)] text-[clamp(1.25rem,2.2vw,1.85rem)] font-bold leading-[1.15] tracking-[-0.03em]">
-            <Link
-              to={href}
-              className="transition-opacity duration-300 hover:opacity-55"
-            >
+            <Link to={href} className="hover-fade transition-opacity duration-[200ms]">
               {project.title}
             </Link>
           </h3>
           <p
-            className="max-w-md text-[0.85rem] leading-[1.7] transition-colors duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] lg:text-[0.9rem]"
+            className="max-w-md text-[0.85rem] leading-[1.7] transition-colors duration-500 [transition-timing-function:var(--ease-out)] lg:text-[0.9rem]"
             style={{
               color:
                 focused || !desktopScale
@@ -252,7 +250,7 @@ function ProjectRow({ project }: { project: Project }) {
               transform: `scale(${scale})`,
               transformOrigin: "right center",
               transition: desktopScale
-                ? "transform 0.75s cubic-bezier(0.22, 1, 0.36, 1)"
+                ? `transform 560ms ${motion.cssEaseOut}`
                 : "none",
             }}
             aria-label={`View project: ${project.title}`}

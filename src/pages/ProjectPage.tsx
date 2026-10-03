@@ -15,6 +15,7 @@ import { LightboxProvider, LightboxTrigger } from "../components/ImageLightbox";
 import { LoadingMark, SmartImage, useMediaDimensions, useVideoDimensions } from "../components/MediaLoad";
 import { MobileMenu } from "../components/MobileMenu";
 import { Navigation } from "../components/Navigation";
+import { jumpToTop } from "../lib/jumpToTop";
 import { caseDetailFor, findProject } from "../data/projects";
 import type {
   DetailFigure,
@@ -37,9 +38,7 @@ export function ProjectPage() {
     if ("scrollRestoration" in history) {
       history.scrollRestoration = "manual";
     }
-    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
-    document.documentElement.scrollTop = 0;
-    document.body.scrollTop = 0;
+    jumpToTop();
   }, [id]);
 
   useEffect(() => {
@@ -744,16 +743,49 @@ function SectionBlock({ section }: { section: DetailSection }) {
             </h3>
           )}
           <div className="space-y-6">
-            {section.paragraphs.map((p, i) => (
-              <p
-                key={`${i}-${p.slice(0, 24)}`}
-                className={`text-[0.8rem] leading-[1.85] tracking-[0.03em] text-white sm:text-[0.88rem] ${
-                  section.weight === "normal" ? "font-normal" : "font-bold"
-                } ${p.includes("\n") ? "whitespace-pre-line" : ""}`}
-              >
-                {p}
-              </p>
-            ))}
+            {section.paragraphs.map((p, i) => {
+              if (typeof p !== "string" && "parts" in p) {
+                return (
+                  <p
+                    key={`${i}-${p.parts[0]?.text.slice(0, 24) ?? "parts"}`}
+                    className="text-[0.8rem] leading-[1.85] tracking-[0.03em] text-white sm:text-[0.88rem]"
+                  >
+                    {p.parts.map((part, j) => {
+                      const partWeight = part.weight ?? section.weight;
+                      return (
+                        <span key={`${j}-${part.text.slice(0, 16)}`}>
+                          {j > 0 ? <br /> : null}
+                          <span
+                            className={
+                              partWeight === "normal"
+                                ? "font-normal"
+                                : "font-bold"
+                            }
+                          >
+                            {part.text}
+                          </span>
+                        </span>
+                      );
+                    })}
+                  </p>
+                );
+              }
+              const text = typeof p === "string" ? p : p.text;
+              const weight =
+                typeof p === "string"
+                  ? section.weight
+                  : (p.weight ?? section.weight);
+              return (
+                <p
+                  key={`${i}-${text.slice(0, 24)}`}
+                  className={`text-[0.8rem] leading-[1.85] tracking-[0.03em] text-white sm:text-[0.88rem] ${
+                    weight === "normal" ? "font-normal" : "font-bold"
+                  } ${text.includes("\n") ? "whitespace-pre-line" : ""}`}
+                >
+                  {text}
+                </p>
+              );
+            })}
           </div>
         </section>
       );
@@ -818,20 +850,42 @@ function SectionBlock({ section }: { section: DetailSection }) {
             </p>
           )}
           {splitRuled ? (
-            <div className="grid grid-cols-1 items-start gap-x-12 lg:grid-cols-2 xl:gap-x-20">
-              {[
-                section.items.filter((_, i) => i % 2 === 0),
-                section.items.filter((_, i) => i % 2 === 1),
-              ].map((col, ci) =>
+            <div
+              className={
+                section.ruledSplit === "stack"
+                  ? "w-full max-w-xl"
+                  : "grid grid-cols-1 items-start gap-x-12 lg:grid-cols-2 xl:gap-x-20"
+              }
+            >
+              {(section.ruledSplit === "stack"
+                ? [section.items]
+                : section.ruledSplit === "primary"
+                  ? [section.items.slice(0, 1), section.items.slice(1)]
+                  : [
+                      section.items.filter((_, i) => i % 2 === 0),
+                      section.items.filter((_, i) => i % 2 === 1),
+                    ]
+              ).map((col, ci) =>
                 col.length === 0 ? null : (
                   <div
                     key={`goals-col-${ci}`}
-                    className={ci === 0 ? "w-full max-w-xl" : "w-full"}
+                    className={
+                      section.ruledSplit === "stack"
+                        ? "w-full"
+                        : ci === 0
+                          ? "w-full max-w-xl"
+                          : "w-full"
+                    }
                   >
                     {col.map((item, i) => {
                       const isFirst = i === 0;
                       const isLast = i === col.length - 1;
-                      const hasRight = ci === 0 && section.items.some((_, idx) => idx % 2 === 1);
+                      const hasRight =
+                        section.ruledSplit !== "stack" &&
+                        ci === 0 &&
+                        (section.ruledSplit === "primary"
+                          ? section.items.length > 1
+                          : section.items.some((_, idx) => idx % 2 === 1));
                       const rules =
                         isFirst && isLast
                           ? "border-y"

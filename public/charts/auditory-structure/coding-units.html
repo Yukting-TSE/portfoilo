@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Cohen's κ = .80</title>
+<style>
+  :root{
+    --bg:#F7F2EB;
+    --ink:#081F5C;
+    --muted:rgba(8,31,92,.60);
+    --faint:rgba(8,31,92,.32);
+    --grid:rgba(8,31,92,.16);
+    --sans:"HelveticaNowDisplay-Medium","Helvetica Neue",Helvetica,Arial,"PingFang SC","Microsoft YaHei",sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--ink);border-radius:24px}
+  body{font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  .card,svg{width:100%;height:100%;display:block;background:var(--bg)}
+  svg text{font-family:var(--sans);user-select:none}
+  .pop{transform-box:fill-box;transform-origin:center;animation:pop .5s cubic-bezier(.2,.7,.3,1.3) both}
+  .fade{animation:fade .9s ease both}
+  @keyframes pop{from{transform:scale(0)}to{transform:none}}
+  @keyframes fade{from{opacity:0}}
+  @media (prefers-reduced-motion:reduce){
+    .pop,.fade{animation:none}
+  }
+</style>
+</head>
+<body>
+<div class="card">
+  <svg id="coding" viewBox="0 0 960 540" preserveAspectRatio="xMidYMid meet"></svg>
+</div>
+<script>
+(function () {
+  'use strict';
+  /* L14 Hundred Field · lupi-gallery.html · “A hundred of us, four minds”
+     Porcelain。1 点 = 1 个百分点。312 单元四舍五入到 100：
+     74→24，73→23，106→34，59→19。最深 = 单元最多。 */
+  const PAPER = '#F7F2EB';
+  const INK = '#081F5C';
+  const DATA = '#334EAC';
+  const MUTED = 'rgba(8,31,92,.60)';
+  const FAINT = 'rgba(8,31,92,.32)';
+  const GRID = 'rgba(8,31,92,.16)';
+  const FAINTDATA = '#BAD6EB';
+  const DATA2 = '#7096D1';
+  const NS = 'http://www.w3.org/2000/svg';
+  const D2R = Math.PI / 180;
+  const rnd = (i, k) => Math.abs(((i * 73856093) ^ (k * 19349663)) % 1000) / 1000;
+  const pol = (cx, cy, r, deg) => [cx + r * Math.cos(deg * D2R), cy + r * Math.sin(deg * D2R)];
+  const el = (p, t, a) => { const n = document.createElementNS(NS, t);
+    for (const k in a) n.setAttribute(k, a[k]); p.appendChild(n); return n; };
+  const txt = (p, a, s) => { const n = el(p, 'text', a); n.textContent = s; return n; };
+  const tip = (n, s) => { const node = document.createElementNS(NS, 'title');
+    node.textContent = s; n.appendChild(node); };
+
+  const SEG = [
+    ['可控性失败', 34, INK, 106],
+    ['区分性失败', 24, DATA, 74],
+    ['预测性失效', 23, DATA2, 73],
+    ['补偿策略', 19, FAINTDATA, 59]
+  ];
+  const POS = [[210, 250], [455, 220], [740, 250], [480, 400]];
+
+  const root = document.getElementById('coding');
+  const draw = () => {
+    root.innerHTML = '';
+    el(root, 'rect', { width: 960, height: 540, fill: PAPER });
+
+    txt(root, {
+      x: 36, y: 58, fill: INK, 'font-size': 15, 'font-weight': 700,
+      'letter-spacing': '.04em', class: 'fade'
+    }, "Cohen's κ");
+    txt(root, {
+      x: 36, y: 118, fill: INK, 'font-size': 56, 'font-weight': 800,
+      'letter-spacing': '-.04em', class: 'fade', style: 'animation-delay:.06s'
+    }, '.80');
+    txt(root, {
+      x: 220, y: 78, fill: MUTED, 'font-size': 13, 'font-weight': 600,
+      class: 'fade', style: 'animation-delay:.1s'
+    }, '两位编码者独立标注全部 312 个单元');
+    txt(root, {
+      x: 220, y: 102, fill: MUTED, 'font-size': 13, 'font-weight': 600,
+      class: 'fade', style: 'animation-delay:.14s'
+    }, '一点 = 一个百分点 · 最深的一类单元最多');
+
+    [[0, 1], [0, 2], [1, 3], [2, 3]].forEach((pair, k) => {
+      const a = POS[pair[0]], b = POS[pair[1]];
+      el(root, 'line', {
+        x1: a[0], y1: a[1], x2: b[0], y2: b[1],
+        stroke: GRID, 'stroke-width': 1.3, 'stroke-dasharray': '3 7',
+        class: 'fade', style: `animation-delay:${0.7 + k * 0.08}s`
+      });
+    });
+
+    SEG.forEach((row, ci) => {
+      const name = row[0], v = row[1], shade = row[2], raw = row[3];
+      const cx = POS[ci][0], cy = POS[ci][1];
+      let edge = 0;
+      for (let k = 0; k < v; k++) {
+        const a = k * 137.508 + ci * 55;
+        const rr = 6 + Math.sqrt(k) * 8.2 + rnd(k + 1, ci + 2) * 4;
+        edge = Math.max(edge, rr);
+        const xy = pol(cx, cy, rr, a);
+        if (k % 5 === 0) {
+          el(root, 'line', {
+            x1: cx, y1: cy, x2: xy[0], y2: xy[1],
+            stroke: FAINTDATA, 'stroke-width': 1.1,
+            class: 'fade', style: `animation-delay:${ci * 0.12 + k * 0.01}s`
+          });
+        }
+        const dot = el(root, 'circle', {
+          cx: xy[0], cy: xy[1],
+          r: 2.1 + rnd(k + 2, ci + 3) * 2.2,
+          fill: shade, opacity: 0.92,
+          class: 'pop', style: `animation-delay:${ci * 0.12 + k * 0.01}s`
+        });
+        tip(dot, name + ' — ' + raw + ' / 312');
+      }
+      el(root, 'circle', {
+        cx, cy, r: 3.2, fill: INK,
+        class: 'pop', style: `animation-delay:${ci * 0.12}s`
+      });
+      txt(root, {
+        x: cx, y: cy + edge + 18, fill: INK, 'font-size': 13, 'font-weight': 800,
+        'text-anchor': 'middle',
+        style: `paint-order:stroke;stroke:${PAPER};stroke-width:4px;animation-delay:${0.45 + ci * 0.1}s`,
+        class: 'fade'
+      }, name + ' · ' + raw);
+    });
+
+    txt(root, {
+      x: 480, y: 522, fill: FAINT, 'font-size': 11, 'font-weight': 600,
+      'text-anchor': 'middle', 'letter-spacing': '.1em',
+      class: 'fade', style: 'animation-delay:1.1s'
+    }, 'L14 HUNDRED FIELD  ·  24 + 23 + 34 + 19 = 100  ·  κ = .80');
+  };
+
+  draw();
+  root.style.cursor = 'pointer';
+  root.addEventListener('click', draw);
+})();
+</script>
+</body>
+</html>

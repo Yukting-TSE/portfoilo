@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="760" viewBox="0 0 720 760" role="img" aria-labelledby="t d">
+  <title id="t">Study 2 three measures</title>
+  <desc id="d">Study 2 separately measures perceptual discriminability, perceived usefulness, and task success.</desc>
+  <rect width="720" height="760" fill="#FFFFFF"/>
+
+  <rect x="90" y="28" width="540" height="188" rx="22" fill="#D9ECFF" stroke="#3B9AE8" stroke-width="3"/>
+  <rect x="122" y="52" width="476" height="140" rx="14" fill="#FFFFFF"/>
+  <text x="360" y="88" text-anchor="middle" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#2B9BFF" letter-spacing=".12em">01</text>
+  <text x="360" y="122" text-anchor="middle" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="24" font-weight="800" fill="#111111">&#24863;&#30693;&#21306;&#20998;&#24230;</text>
+  <text x="360" y="148" text-anchor="middle" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="15" font-weight="500" fill="#4A4A4A">Perceptual discriminability</text>
+  <text x="360" y="176" text-anchor="middle" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="16" font-weight="500" fill="#111111">&#21442;&#19982;&#32773;&#33021;&#21542;&#21306;&#20998;&#19981;&#21516;&#38899;&#39640;&#65311;</text>
+
+  <line x1="360" y1="228" x2="360" y2="262" stroke="#2B9BFF" stroke-width="4"/>
+  <polygon points="360,276 348,258 372,258" fill="#2B9BFF"/>
+
+  <rect x="90" y="288" width="540" height="188" rx="22" fill="#2B9BFF"/>
+  <rect x="122" y="312" width="476" height="140" rx="14" fill="#FFFFFF"/>
+  <text x="360" y="348" text-anchor="middle" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#2B9BFF" letter-spacing=".12em">02</text>
+  <text x="360" y="382" text-anchor="middle" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="24" font-weight="800" fill="#111111">&#24863;&#30693;&#26377;&#29992;&#24615;</text>
+  <text x="360" y="408" text-anchor="middle" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="15" font-weight="500" fill="#4A4A4A">Perceived usefulness</text>
+  <text x="360" y="436" text-anchor="middle" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="16" font-weight="500" fill="#111111">&#36825;&#31181;&#23618;&#32423;&#20449;&#24687;&#23545;&#24403;&#21069;&#20219;&#21153;&#26377;&#29992;&#21527;&#65311;</text>
+
+  <line x1="360" y1="488" x2="360" y2="522" stroke="#2B9BFF" stroke-width="4"/>
+  <polygon points="360,536 348,518 372,518" fill="#2B9BFF"/>
+
+  <rect x="90" y="548" width="540" height="188" rx="22" fill="#D9ECFF" stroke="#3B9AE8" stroke-width="3"/>
+  <rect x="122" y="572" width="476" height="140" rx="14" fill="#FFFFFF"/>
+  <text x="360" y="608" text-anchor="middle" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#2B9BFF" letter-spacing=".12em">03</text>
+  <text x="360" y="642" text-anchor="middle" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="24" font-weight="800" fill="#111111">&#20219;&#21153;&#25104;&#21151;</text>
+  <text x="360" y="668" text-anchor="middle" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="15" font-weight="500" fill="#4A4A4A">Task success</text>
+  <text x="360" y="696" text-anchor="middle" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="16" font-weight="500" fill="#111111">&#21152;&#20837;&#22768;&#38899;&#26144;&#23556;&#21518;&#65292;&#23436;&#25104;&#32467;&#26524;&#21464;&#20102;&#21527;&#65311;</text>

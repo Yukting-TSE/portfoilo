@@ -4,6 +4,7 @@ import { Footer } from "../components/Footer";
 import { MobileMenu } from "../components/MobileMenu";
 import { Navigation } from "../components/Navigation";
 import { aboutDetail } from "../data/about";
+import { jumpToTop } from "../lib/jumpToTop";
 import { CaseStudy } from "./ProjectPage";
 
 export function AboutPage() {
@@ -12,9 +13,7 @@ export function AboutPage() {
   const [navOpacity, setNavOpacity] = useState(1);
 
   useLayoutEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
-    document.documentElement.scrollTop = 0;
-    document.body.scrollTop = 0;
+    jumpToTop();
   }, []);
 
   useEffect(() => {

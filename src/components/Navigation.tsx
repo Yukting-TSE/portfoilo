@@ -40,14 +40,18 @@ export function Navigation({
         opacity,
         pointerEvents: faded ? "none" : "auto",
         transition: "opacity 60ms linear",
+        paddingTop: "max(1.25rem, env(safe-area-inset-top, 0px))",
       }}
       aria-hidden={faded}
     >
       <Link
         to="/"
         onClick={goHomeTop}
-        className="relative z-[110] font-[family-name:var(--font-display)] text-[21px] tracking-tight transition-opacity duration-300 hover:opacity-45 sm:text-[26px]"
-        style={{ textShadow: "0 1px 3px rgba(0,0,0,0.75), 0 0 12px rgba(0,0,0,0.35)" }}
+        className="pressable relative z-[110] font-[family-name:var(--font-display)] text-[21px] tracking-tight hover-fade sm:text-[26px]"
+        style={{
+          textShadow:
+            "0 1px 3px rgba(0,0,0,0.75), 0 0 12px rgba(0,0,0,0.35)",
+        }}
         tabIndex={faded ? -1 : undefined}
       >
         Yukting®{" "}
@@ -62,14 +66,14 @@ export function Navigation({
       >
         {links.map((l) => {
           const className =
-            "group relative text-[13px] tracking-[0.04em] transition-all duration-300 hover:-translate-y-0.5 lg:text-[14px] [text-shadow:0_1px_3px_rgba(0,0,0,0.75),0_0_10px_rgba(0,0,0,0.35)]";
+            "group relative text-[13px] tracking-[0.04em] lg:text-[14px] [text-shadow:0_1px_3px_rgba(0,0,0,0.75),0_0_10px_rgba(0,0,0,0.35)]";
           const label = (
             <>
-              <span className="transition-opacity duration-300 group-hover:opacity-45">
+              <span className="nav-underline inline-block transition-[opacity,transform] duration-[200ms] [transition-timing-function:var(--ease-out)]">
                 {l.label}
               </span>
               <span
-                className="pointer-events-none absolute -bottom-1 left-0 h-px w-0 bg-[var(--fg)] transition-all duration-300 group-hover:w-full"
+                className="nav-underline-bar pointer-events-none absolute -bottom-1 left-0 h-px w-0 bg-[var(--fg)] transition-[width] duration-[200ms] [transition-timing-function:var(--ease-out)]"
                 aria-hidden
               />
             </>
@@ -103,7 +107,7 @@ export function Navigation({
 
       <button
         type="button"
-        className="relative z-[110] inline-flex h-10 w-10 flex-col items-center justify-center gap-[5px] md:hidden"
+        className="pressable relative z-[110] inline-flex h-10 w-10 flex-col items-center justify-center gap-[5px] md:hidden"
         aria-expanded={menuOpen}
         aria-controls="mobile-menu"
         aria-label={menuOpen ? "Close menu" : "Open menu"}
@@ -111,17 +115,17 @@ export function Navigation({
         tabIndex={faded ? -1 : undefined}
       >
         <span
-          className={`block h-[2px] w-6 bg-current transition duration-300 ${
+          className={`block h-[2px] w-6 bg-current transition-[transform,opacity] duration-[200ms] [transition-timing-function:var(--ease-out)] ${
             menuOpen ? "translate-y-[7px] rotate-45" : ""
           }`}
         />
         <span
-          className={`block h-[2px] w-6 bg-current transition duration-300 ${
+          className={`block h-[2px] w-6 bg-current transition-[opacity] duration-[160ms] [transition-timing-function:var(--ease-out)] ${
             menuOpen ? "opacity-0" : ""
           }`}
         />
         <span
-          className={`block h-[2px] w-6 bg-current transition duration-300 ${
+          className={`block h-[2px] w-6 bg-current transition-[transform,opacity] duration-[200ms] [transition-timing-function:var(--ease-out)] ${
             menuOpen ? "-translate-y-[7px] -rotate-45" : ""
           }`}
         />

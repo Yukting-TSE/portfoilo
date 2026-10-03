@@ -9,6 +9,12 @@
   --line: rgba(255, 255, 255, 0.14);
   --line-light: rgba(255, 255, 255, 0.35);
   --selection: #2d69e2;
+  /* Emil: strong custom curves — built-in easings are too weak */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+  --duration-press: 160ms;
+  --duration-ui: 200ms;
   --font-display: "HelveticaNowDisplay-Medium", "Helvetica Neue", Helvetica,
     Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
   --font-body: "HelveticaNowDisplayW01-Rg", "Helvetica Neue", Helvetica, Arial,
@@ -22,7 +28,10 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  /* Keep auto: global smooth would animate route changes (case studies) to top */
+  scroll-behavior: auto;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -48,6 +57,39 @@ button,
 input,
 textarea {
   font: inherit;
+}
+
+/* mobile-native: no iOS zoom on focus; press feedback lives on :active */
+input,
+textarea,
+select {
+  font-size: 16px;
+}
+
+button,
+a,
+[role="button"] {
+  touch-action: manipulation;
+}
+
+button,
+[role="button"],
+.pressable {
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+
+.pressable {
+  transition:
+    transform var(--duration-press) var(--ease-out),
+    background-color var(--duration-ui) ease,
+    opacity var(--duration-ui) ease,
+    border-color var(--duration-ui) ease;
+}
+
+.pressable:active {
+  transform: scale(0.97);
 }
 
 /* Selection: hero-matched blue (same lightness as former red), black type */
@@ -118,10 +160,10 @@ textarea {
 
 .reveal {
   opacity: 0;
-  transform: translateY(40px);
+  transform: translateY(24px);
   transition:
-    opacity 800ms ease,
-    transform 800ms cubic-bezier(0.16, 1, 0.3, 1);
+    opacity 500ms var(--ease-out),
+    transform 500ms var(--ease-out);
 }
 
 .reveal.is-in {
@@ -131,7 +173,7 @@ textarea {
 
 .img-reveal {
   clip-path: inset(100% 0 0 0);
-  transition: clip-path 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+  transition: clip-path 900ms var(--ease-in-out);
 }
 
 .img-reveal.is-in {
@@ -140,13 +182,62 @@ textarea {
 
 .img-reveal img,
 .img-reveal .ph {
-  transform: scale(1.08);
-  transition: transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transform: scale(1.06);
+  transition: transform 900ms var(--ease-out);
 }
 
 .img-reveal.is-in img,
 .img-reveal.is-in .ph {
   transform: scale(1);
+}
+
+/* Fine pointer only — touch leaves sticky :hover otherwise */
+@media (hover: hover) and (pointer: fine) {
+  .hover-fade:hover {
+    opacity: 0.55;
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-2px);
+  }
+
+  .hero-pill:hover {
+    background-color: rgba(255, 255, 255, 0.8);
+  }
+
+  .hero-pill-ghost:hover {
+    background-color: rgba(255, 255, 255, 0.7);
+  }
+
+  .nav-underline:hover {
+    opacity: 0.45;
+  }
+
+  .nav-underline:hover + .nav-underline-bar,
+  .group:hover .nav-underline-bar {
+    width: 100%;
+  }
+
+  .works-cat-link:hover {
+    transform: translateX(4px);
+    color: var(--fg);
+  }
+
+  .works-cat-link:hover .works-cat-tick {
+    width: 0.75rem;
+  }
+
+  .footer-cta:hover {
+    opacity: 0.92;
+  }
+
+  .footer-cta:hover .footer-cta-arrow {
+    transform: translate(2px, -2px);
+  }
+
+  .footer-link:hover {
+    opacity: 0.55;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -157,7 +248,8 @@ textarea {
   .reveal,
   .img-reveal,
   .img-reveal img,
-  .img-reveal .ph {
+  .img-reveal .ph,
+  .pressable {
     opacity: 1 !important;
     transform: none !important;
     clip-path: none !important;

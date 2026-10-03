@@ -65,11 +65,19 @@ export type DetailPrototype = {
   figures?: DetailFigure[];
 };
 
+export type DetailParagraph =
+  | string
+  | { text: string; weight?: "bold" | "normal" }
+  | {
+      /** Mixed-weight lines rendered in one paragraph (line-broken, not section-spaced). */
+      parts: { text: string; weight?: "bold" | "normal" }[];
+    };
+
 export type DetailSection =
   | {
       type: "prose";
       title?: string;
-      paragraphs: string[];
+      paragraphs: DetailParagraph[];
       /** Body weight; default bold to match case-study style */
       weight?: "bold" | "normal";
     }
@@ -103,6 +111,13 @@ export type DetailSection =
       compact?: boolean;
       /** Top and bottom rules on each item (e.g. paired research questions) */
       ruled?: boolean;
+      /**
+       * Two-column split when `ruled` is set.
+       * - zigzag (default): even → left, odd → right
+       * - primary: first item left; remaining items stacked right
+       * - stack: all items in one left column
+       */
+      ruledSplit?: "zigzag" | "primary" | "stack";
       /** Equal cards in a row instead of a stacked list */
       layout?: "cards";
       /** Push down to align with sibling prose body (skip matching title row) */

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="680" viewBox="0 0 1080 680" role="img" aria-labelledby="t d">
+  <title id="t">Study 2 results: HEAR, USE, ACT</title>
+  <desc id="d">Discriminability 4.53 out of 5. Usefulness 3.42 out of 5, not reliably above the midpoint. Task success 31 of 38 in both conditions, sign test p = 1.</desc>
+  <rect width="1080" height="680" fill="#FFFFFF"/>
+
+  <rect x="24" y="20" width="332" height="318" rx="22" fill="#D9ECFF" stroke="#3B9AE8" stroke-width="3"/>
+  <text x="190" y="54" text-anchor="middle" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="13" font-weight="800" fill="#2B9BFF" letter-spacing=".18em">HEAR</text>
+  <text x="190" y="118" text-anchor="middle" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="44" font-weight="800" fill="#111111">4.53<tspan font-size="22" fill="#4A4A4A"> / 5</tspan></text>
+  <text x="190" y="162" text-anchor="middle" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="28" font-weight="800" fill="#1AAE5A">&#10003;</text>
+  <text x="190" y="194" text-anchor="middle" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#111111">Can hear it</text>
+  <text x="190" y="232" text-anchor="middle" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="12" font-weight="600" fill="#4A4A4A">Participants could distinguish</text>
+  <text x="190" y="250" text-anchor="middle" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="12" font-weight="600" fill="#4A4A4A">the pitch levels.</text>
+  <text x="190" y="292" text-anchor="middle" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#111111">M = 4.53, SD = 1.02</text>
+
+  <rect x="374" y="20" width="332" height="318" rx="22" fill="#D9ECFF" stroke="#3B9AE8" stroke-width="3"/>
+  <text x="540" y="54" text-anchor="middle" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="13" font-weight="800" fill="#2B9BFF" letter-spacing=".18em">USE</text>
+  <text x="540" y="118" text-anchor="middle" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="44" font-weight="800" fill="#111111">3.42<tspan font-size="22" fill="#4A4A4A"> / 5</tspan></text>
+  <text x="540" y="162" text-anchor="middle" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="32" font-weight="800" fill="#E23B6C">?</text>
+  <text x="540" y="194" text-anchor="middle" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#111111">Useful?</text>
+  <text x="540" y="232" text-anchor="middle" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="12" font-weight="600" fill="#4A4A4A">Not reliably above the</text>
+  <text x="540" y="250" text-anchor="middle" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="12" font-weight="600" fill="#4A4A4A">midpoint of 3.</text>
+  <text x="540" y="284" text-anchor="middle" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#111111">M = 3.42, SD = 1.22</text>
+  <text x="540" y="304" text-anchor="middle" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="11" font-weight="600" fill="#4A4A4A">95% CI [&#8722;0.17, 1.01]</text>
+  <text x="540" y="322" text-anchor="middle" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="11" font-weight="600" fill="#4A4A4A">t(18) = 1.51, p = .149</text>
+
+  <rect x="724" y="20" width="332" height="318" rx="22" fill="#D9ECFF" stroke="#3B9AE8" stroke-width="3"/>
+  <text x="890" y="54" text-anchor="middle" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="13" font-weight="800" fill="#2B9BFF" letter-spacing=".18em">ACT</text>
+  <text x="890" y="112" text-anchor="middle" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="28" font-weight="800" fill="#111111">81.6% &#8594; 81.6%</text>
+  <text x="890" y="162" text-anchor="middle" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="32" font-weight="800" fill="#2B9BFF">=</text>
+  <text x="890" y="194" text-anchor="middle" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#111111">Task success</text>
+  <text x="890" y="232" text-anchor="middle" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="12" font-weight="600" fill="#4A4A4A">Identical with and</text>
+  <text x="890" y="250" text-anchor="middle" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="12" font-weight="600" fill="#4A4A4A">without pitch.</text>
+  <text x="890" y="284" text-anchor="middle" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#111111">31/38 vs 31/38</text>
+  <text x="890" y="304" text-anchor="middle" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="11" font-weight="600" fill="#4A4A4A">15/19 tied</text>
+  <text x="890" y="322" text-anchor="middle" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="11" font-weight="600" fill="#4A4A4A">sign test p = 1</text>
+
+  <rect x="24" y="358" width="1032" height="298" rx="22" fill="#D9ECFF" stroke="#3B9AE8" stroke-width="3"/>
+  <text x="540" y="396" text-anchor="middle" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="13" font-weight="800" fill="#2B9BFF" letter-spacing=".18em">TASK SUCCESS</text>
+
+  <text x="220" y="490" text-anchor="middle" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="56" font-weight="800" fill="#111111">31 / 38</text>
+  <text x="220" y="528" text-anchor="middle" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#4A4A4A">Speech only</text>
+
+  <text x="540" y="478" text-anchor="middle" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="48" font-weight="800" fill="#E23B6C">=</text>
+  <text x="540" y="516" text-anchor="middle" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="16" font-weight="800" fill="#111111">p = 1.00</text>
+  <text x="540" y="542" text-anchor="middle" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="12" font-weight="600" fill="#4A4A4A">two-sided sign test</text>
+
+  <text x="860" y="490" text-anchor="middle" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="56" font-weight="800" fill="#111111">31 / 38</text>
+  <text x="860" y="528" text-anchor="middle" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#4A4A4A">Speech + Pitch</text>
+
+  <text x="540" y="612" text-anchor="middle" font-family="Inter, Helvetica Neue, Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#4A4A4A">15 of 19 participants tied &#183; N = 19, 38 look-ups per condition</text>
+</svg>

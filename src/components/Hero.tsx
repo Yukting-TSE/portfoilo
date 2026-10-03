@@ -47,6 +47,19 @@ export function Hero() {
     }
   };
 
+  const enterStyle = (delayMs: number) =>
+    ready
+      ? {
+          opacity: 1,
+          transform: "translateY(0)",
+          transition: `opacity 420ms var(--ease-out) ${delayMs}ms, transform 420ms var(--ease-out) ${delayMs}ms`,
+        }
+      : {
+          opacity: 0,
+          transform: "translateY(10px)",
+          transition: "none",
+        };
+
   return (
     <section
       id="top"
@@ -69,11 +82,11 @@ export function Hero() {
 
       <div className="relative z-10 max-w-xl">
         <p
-          className={`mb-5 min-h-[72px] text-[clamp(18px,4vw,26px)] font-normal leading-[1.35] text-white transition-opacity duration-500 sm:mb-6 ${
-            ready ? "opacity-100" : "opacity-0"
-          }`}
+          className="mb-5 min-h-[72px] text-[clamp(18px,4vw,26px)] font-normal leading-[1.35] text-white sm:mb-6"
           style={{
-            textShadow: "0 1px 2px rgba(0,0,0,0.55), 0 2px 14px rgba(0,0,0,0.35)",
+            ...enterStyle(0),
+            textShadow:
+              "0 1px 2px rgba(0,0,0,0.55), 0 2px 14px rgba(0,0,0,0.35)",
           }}
           aria-live="polite"
         >
@@ -87,13 +100,12 @@ export function Hero() {
         </p>
 
         <div
-          className={`mb-8 flex flex-wrap transition-opacity duration-500 ${
-            ready ? "opacity-100" : "opacity-0"
-          }`}
+          className="mb-8 flex flex-wrap"
+          style={enterStyle(50)}
         >
           {profile.pills.map((pill) => {
             const className =
-              "mb-[0.4em] mr-[0.2em] inline-flex items-center justify-center whitespace-nowrap rounded-full border border-white/25 bg-white/55 px-4 py-[0.35em] text-[13px] text-[var(--black)] backdrop-blur-md transition-colors duration-200 hover:bg-white/80 sm:px-5 sm:text-[15px]";
+              "hero-pill pressable mb-[0.4em] mr-[0.2em] inline-flex items-center justify-center whitespace-nowrap rounded-full border border-white/25 bg-white/55 px-4 py-[0.35em] text-[13px] text-[var(--black)] backdrop-blur-md sm:px-5 sm:text-[15px]";
             const isExternal =
               pill.href.startsWith("http") ||
               pill.href.toLowerCase().endsWith(".pdf");
@@ -123,7 +135,7 @@ export function Hero() {
           <button
             type="button"
             onClick={copyEmail}
-            className="mb-[0.4em] mr-[0.2em] inline-flex items-center gap-2 whitespace-nowrap rounded-full border border-white/40 bg-white/20 px-4 py-[0.35em] text-[13px] text-[var(--black)] backdrop-blur-md transition-colors duration-200 hover:bg-white/70 sm:gap-3 sm:px-5 sm:text-[15px]"
+            className="hero-pill-ghost pressable mb-[0.4em] mr-[0.2em] inline-flex items-center gap-2 whitespace-nowrap rounded-full border border-white/40 bg-white/20 px-4 py-[0.35em] text-[13px] text-[var(--black)] backdrop-blur-md sm:gap-3 sm:px-5 sm:text-[15px]"
           >
             <span>
               Reach me: <u className="underline-offset-1">{profile.email}</u>
@@ -148,10 +160,9 @@ export function Hero() {
         </div>
 
         <div
-          className={`flex flex-wrap gap-x-4 gap-y-1 text-[12px] tracking-[0.02em] text-white/85 transition-opacity duration-500 ${
-            ready ? "opacity-100" : "opacity-0"
-          }`}
+          className="flex flex-wrap gap-x-4 gap-y-1 text-[12px] tracking-[0.02em] text-white/85"
           style={{
+            ...enterStyle(100),
             textShadow: "0 1px 3px rgba(0,0,0,0.5)",
           }}
         >
@@ -163,9 +174,8 @@ export function Hero() {
 
       <a
         href="#works"
-        className={`absolute bottom-6 right-6 z-10 hidden flex-col items-center gap-1 text-[11px] tracking-[0.18em] text-white/70 transition-opacity duration-500 md:flex ${
-          ready ? "opacity-100" : "opacity-0"
-        }`}
+        className="absolute bottom-6 right-6 z-10 hidden flex-col items-center gap-1 text-[11px] tracking-[0.18em] text-white/70 md:flex"
+        style={enterStyle(140)}
       >
         SCROLL
         <span
