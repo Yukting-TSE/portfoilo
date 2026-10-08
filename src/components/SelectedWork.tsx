@@ -264,7 +264,7 @@ function ProjectRow({ project }: { project: Project }) {
               loading="lazy"
               width={1600}
               height={900}
-              className="h-full w-full object-cover object-center"
+              className="h-full w-full object-cover object-top"
             />
             {tags.length > 0 && (
               <div className="pointer-events-none absolute left-3 top-3 z-[2] flex max-w-[90%] flex-wrap gap-2 sm:left-4 sm:top-4">
