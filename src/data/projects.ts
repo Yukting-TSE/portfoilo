@@ -96,14 +96,13 @@ export const categories: ProjectCategory[] = [
         title:
           "Auditory Structure Does Not Necessarily Correspond to Task Use: Error Recovery and Task-Relevant Mapping in Non-Visual Interaction",
         challenge:
-          "读屏把界面摊成线性语音流。用户听得见当前是什么，却难以判断自己在哪、下一步会到哪、走错后如何回来；若评价只问是否完成、花了多久，错误与恢复就会从记录里消失。",
+          "读屏能读出界面名称，但层级与邻接难以随语音进入；视障用户只能靠工作记忆重建结构，任务更慢、错误更多。",
         approach:
-          "用同一批 19 名视障高中生完成两项实验：研究一在规定路径上同时记录错误与条件恢复；研究二把可辨的音高映射到任务并不使用的 DOM 深度，分开测量「听得见」与「用得上」。",
+          "区分信息功能与结构功能，用音高呈现DOM关系，并操作化为区分性、预测性与可控性；两项实验分别记录错误与恢复，以及可辨、层级判断与查找表现。",
         time: "2026",
         role: "研究设计 / 实验执行与分析 · 谢玉婷",
         method: "非视觉交互 · 界面结构功能 · 听觉表征 · 视障青少年 · 可控性",
-        impact:
-          "在学校情境中给出两项观察：错误与恢复可以走出时间与负荷没有走出的模式；可辨本身并不保证对任务外区分的感知有用性。投稿 CHI 2027。",
+        impact: "第一作者论文投稿 CHI 2027。",
         images: [
           publicUrl("images/projects/auditory-structure/cover.jpg"),
           publicUrl("images/projects/auditory-structure/cover.jpg"),

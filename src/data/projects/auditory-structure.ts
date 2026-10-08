@@ -129,8 +129,8 @@ export const auditoryStructureDetail: ProjectDetail = {
           type: "figure",
           figures: [
             {
-              src: img("fig3-method-flow.jpg"),
-              alt: "从文献研究、质性访谈、受控实验到设计研究的推进关系。文献识别空白，访谈提供变量来源，Study 1检验RQ1-3，Study 2检验预测性前提并回答RQ4。",
+              src: `${img("fig3-method-flow.jpg")}?v=5.2`,
+              alt: "研究内容与方法流程：理论框架构建、经验验证与变量具化、实验一与实验二的递进推理，以及三类贡献的证据来源。",
               caption:
                 "Fig. 2  研究内容与方法流程图。",
             },
